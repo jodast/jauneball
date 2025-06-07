@@ -136,12 +136,59 @@
     </div>
 
     <style>
+        /* Fullscreen Image Viewer */
+        #imageViewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        #imageViewer.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        #imageViewer img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+        
+        #closeViewer {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 3rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        
+        #closeViewer:hover {
+            color: #f59e0b;
+        }
+        
         .gallery-item {
             position: relative;
             overflow: hidden;
             border-radius: 0.5rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             aspect-ratio: 4/3;
+            cursor: pointer;
         }
         
         .gallery-item:hover {
@@ -162,6 +209,12 @@
         }
     </style>
 
+    <!-- Fullscreen Image Viewer -->
+    <div id="imageViewer">
+        <button id="closeViewer">&times;</button>
+        <img src="" alt="Fullscreen view">
+    </div>
+
     <script>
         // Load images into the gallery
         document.addEventListener('DOMContentLoaded', function() {
@@ -169,6 +222,36 @@
             const closeBtn = document.getElementById('closeImpressions');
             const showBtn = document.getElementById('showImpressionsBtn');
             const overlay = document.getElementById('impressionsOverlay');
+            const imageViewer = document.getElementById('imageViewer');
+            const imageViewerImg = imageViewer.querySelector('img');
+            const closeViewerBtn = document.getElementById('closeViewer');
+            
+            // Image viewer functions
+            function openImageViewer(src) {
+                imageViewerImg.src = src;
+                imageViewer.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeImageViewer() {
+                imageViewer.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Close viewer events
+            closeViewerBtn.addEventListener('click', closeImageViewer);
+            imageViewer.addEventListener('click', (e) => {
+                if (e.target === imageViewer) {
+                    closeImageViewer();
+                }
+            });
+            
+            // Close with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && imageViewer.classList.contains('active')) {
+                    closeImageViewer();
+                }
+            });
             
             // Show button functionality
             if (showBtn) {
@@ -239,15 +322,29 @@
             if (gallery) {
                 images.forEach((src, index) => {
                     const item = document.createElement('div');
-                    item.className = 'gallery-item';
+                    item.className = 'gallery-item group';
                     item.innerHTML = `
-                        <img 
-                            src="${src}" 
-                            alt="Jauneball image ${index + 1}" 
-                            loading="lazy"
-                            class="w-full h-full object-cover"
-                        >
+                        <div class="relative w-full h-full">
+                            <img 
+                                src="${src}" 
+                                alt="Jauneball image ${index + 1}" 
+                                loading="lazy"
+                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                data-fullsize="${src}"
+                            >
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="text-white text-lg font-semibold bg-black/50 px-3 py-1 rounded-full">
+                                    <i class="fas fa-search-plus mr-1"></i> View
+                                </span>
+                            </div>
+                        </div>
                     `;
+                    
+                    // Add click event to open image in fullscreen
+                    item.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        openImageViewer(src);
+                    });
                     gallery.appendChild(item);
                 });
             }
