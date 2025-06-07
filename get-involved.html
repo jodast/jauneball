@@ -7,44 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <style>
-        .resource-card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        .resource-card .card-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 1.5rem;
-        }
-        .card-content > *:not(:last-child) {
-            margin-bottom: 1rem;
-        }
-        .card-actions {
-            margin-top: auto;
-            padding-top: 1rem;
-        }
-        .resource-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-        .btn-primary {
-            background-color: #f59e0b;
-            color: white;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 160px;
-        }
-        .btn-primary:hover {
-            background-color: #d97706;
-            transform: translateY(-2px);
-        }
-    </style>
+
 </head>
 <body class="bg-gray-100">
     <!-- Header with Navigation -->
@@ -72,15 +35,15 @@
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Turnier Excel Tabelle -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden resource-card">
-                    <div class="card-content">
-                        <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-table text-yellow-500 text-xl"></i>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="flex flex-col flex-1 p-6">
+                        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-table text-amber-500 text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold">Turnier Excel Tabelle</h3>
-                        <p class="text-gray-600">Vorlage zur Erfassung von Spielern, Spielplan und Ergebnissen</p>
-                        <div class="card-actions">
-                            <a href="#" class="btn-primary px-4 py-2 rounded-full text-sm font-medium">
+                        <h3 class="text-xl font-bold mb-2">Turnier Excel Tabelle</h3>
+                        <p class="text-gray-600 mb-4">Vorlage zur Erfassung von Spielern, Spielplan und Ergebnissen</p>
+                        <div class="mt-auto pt-4">
+                            <a href="#" class="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium bg-amber-500 hover:bg-amber-600 text-white transition-all duration-300 hover:-translate-y-0.5 min-w-[160px]">
                                 <i class="fas fa-download mr-2"></i> Herunterladen
                             </a>
                         </div>
@@ -88,15 +51,15 @@
                 </div>
 
                 <!-- Offizieller Spielball -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden resource-card">
-                    <div class="card-content">
-                        <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-futbol text-yellow-500 text-xl"></i>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="flex flex-col flex-1 p-6">
+                        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-futbol text-amber-500 text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold">Offizieller Spielball</h3>
-                        <p class="text-gray-600">Der offizielle Jauneball für authentisches Spielgefühl</p>
-                        <div class="card-actions">
-                            <a href="https://www.galaxus.ch/de/s5/product/androni-softball-kinderball-44873822" target="_blank" class="btn-primary px-4 py-2 rounded-full text-sm font-medium">
+                        <h3 class="text-xl font-bold mb-2">Offizieller Spielball</h3>
+                        <p class="text-gray-600 mb-4">Der offizielle Jauneball für authentisches Spielgefühl</p>
+                        <div class="mt-auto pt-4">
+                            <a href="https://www.galaxus.ch/de/s5/product/androni-softball-kinderball-44873822" target="_blank" class="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium bg-amber-500 hover:bg-amber-600 text-white transition-all duration-300 hover:-translate-y-0.5 min-w-[160px]">
                                 <i class="fas fa-shopping-cart mr-2"></i> Jetzt bestellen
                             </a>
                         </div>
@@ -104,15 +67,15 @@
                 </div>
 
                 <!-- Anspielmünze / Wählmarke -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden resource-card">
-                    <div class="card-content">
-                        <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-coins text-yellow-500 text-xl"></i>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="flex flex-col flex-1 p-6">
+                        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-coins text-amber-500 text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold">Anspielmünze / Wählmarke</h3>
-                        <p class="text-gray-600">Offizielle Münze für die Auslosung von Anspiel und Seitenwahl</p>
-                        <div class="card-actions">
-                            <a href="https://www.teamsportbedarf.de/fussball/schiedsrichter/schiedsrichter-waehlmarke-farbe-rot-schwarz_3425_20740" target="_blank" class="btn-primary px-4 py-2 rounded-full text-sm font-medium">
+                        <h3 class="text-xl font-bold mb-2">Anspielmünze / Wählmarke</h3>
+                        <p class="text-gray-600 mb-4">Offizielle Münze für die Auslosung von Anspiel und Seitenwahl</p>
+                        <div class="mt-auto pt-4">
+                            <a href="https://www.teamsportbedarf.de/fussball/schiedsrichter/schiedsrichter-waehlmarke-farbe-rot-schwarz_3425_20740" target="_blank" class="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium bg-amber-500 hover:bg-amber-600 text-white transition-all duration-300 hover:-translate-y-0.5 min-w-[160px]">
                                 <i class="fas fa-shopping-cart mr-2"></i> Jetzt bestellen
                             </a>
                         </div>
@@ -120,15 +83,15 @@
                 </div>
 
                 <!-- Auslosungskugel -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden resource-card">
-                    <div class="card-content">
-                        <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-basketball-ball text-yellow-500 text-xl"></i>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="flex flex-col flex-1 p-6">
+                        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-basketball-ball text-amber-500 text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold">Auslosungskugel</h3>
-                        <p class="text-gray-600">Professionelle Lostrommel für die Auslosung der Spielpaarungen</p>
-                        <div class="card-actions">
-                            <a href="https://shop.tombotto.ch/produkt-kategorie/tombola/leerkapseln-tombola" target="_blank" class="btn-primary px-4 py-2 rounded-full text-sm font-medium">
+                        <h3 class="text-xl font-bold mb-2">Auslosungskugel</h3>
+                        <p class="text-gray-600 mb-4">Professionelle Lostrommel für die Auslosung der Spielpaarungen</p>
+                        <div class="mt-auto pt-4">
+                            <a href="https://shop.tombotto.ch/produkt-kategorie/tombola/leerkapseln-tombola" target="_blank" class="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium bg-amber-500 hover:bg-amber-600 text-white transition-all duration-300 hover:-translate-y-0.5 min-w-[160px]">
                                 <i class="fas fa-shopping-cart mr-2"></i> Jetzt bestellen
                             </a>
                         </div>
@@ -136,15 +99,15 @@
                 </div>
 
                 <!-- Shirts gestalten -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden resource-card">
-                    <div class="card-content">
-                        <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-tshirt text-yellow-500 text-xl"></i>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="flex flex-col flex-1 p-6">
+                        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-tshirt text-amber-500 text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold">Shirts gestalten</h3>
-                        <p class="text-gray-600">Erstelle individuelle Team-Trikots für dein Turnier</p>
-                        <div class="card-actions">
-                            <a href="https://www.Owayo.de" target="_blank" class="btn-primary px-4 py-2 rounded-full text-sm font-medium">
+                        <h3 class="text-xl font-bold mb-2">Shirts gestalten</h3>
+                        <p class="text-gray-600 mb-4">Erstelle individuelle Team-Trikots für dein Turnier</p>
+                        <div class="mt-auto pt-4">
+                            <a href="https://www.Owayo.de" target="_blank" class="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium bg-amber-500 hover:bg-amber-600 text-white transition-all duration-300 hover:-translate-y-0.5 min-w-[160px]">
                                 <i class="fas fa-paint-brush mr-2"></i> Jetzt gestalten
                             </a>
                         </div>
@@ -152,15 +115,15 @@
                 </div>
 
                 <!-- Spielerkarte/Loszettel erstellen -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden resource-card">
-                    <div class="card-content">
-                        <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                            <i class="fas fa-id-card text-yellow-500 text-xl"></i>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+                    <div class="flex flex-col flex-1 p-6">
+                        <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-id-card text-amber-500 text-xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold">Spielerkarte erstellen</h3>
-                        <p class="text-gray-600">Vorlage für professionelle Spielerausweise und Loszettel</p>
-                        <div class="card-actions">
-                            <a href="http://www.canva.com" target="_blank" class="btn-primary px-4 py-2 rounded-full text-sm font-medium">
+                        <h3 class="text-xl font-bold mb-2">Spielerkarte erstellen</h3>
+                        <p class="text-gray-600 mb-4">Vorlage für professionelle Spielerausweise und Loszettel</p>
+                        <div class="mt-auto pt-4">
+                            <a href="http://www.canva.com" target="_blank" class="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-medium bg-amber-500 hover:bg-amber-600 text-white transition-all duration-300 hover:-translate-y-0.5 min-w-[160px]">
                                 <i class="fas fa-paint-brush mr-2"></i> Jetzt erstellen
                             </a>
                         </div>
