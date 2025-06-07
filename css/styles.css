@@ -1,0 +1,176 @@
+/* Base styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 0;
+    z-index: 50;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    pointer-events: none;
+}
+
+nav .container {
+    pointer-events: auto;
+}
+
+/* Navigation buttons */
+.nav-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(13, 14, 15, 0.7); /* Semi-transparent gray */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 140px;
+    text-align: center;
+    white-space: nowrap;
+    margin: 0 0.25rem;
+    backdrop-filter: blur(4px);
+}
+
+.nav-btn:hover {
+    transform: scale(1.05);
+    background-color: rgba(75, 85, 99, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Active/current page button */
+.nav-btn.active {
+    background-color: rgba(55, 65, 81, 0.9);
+    font-weight: 700;
+}
+
+/* Responsive adjustments for navigation */
+@media (max-width: 768px) {
+    .nav-btn {
+        min-width: auto;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    nav {
+        padding: 1rem 0;
+    }
+}
+
+/* Slideshow */
+#slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-color: #000;
+    overflow: hidden;
+}
+
+/* Slideshow layers for crossfade effect */
+#slideshow > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: opacity 1s ease-in-out;
+    will-change: opacity;
+}
+
+/* Ensure content is above the slideshow */
+#slideshow + * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Overlay animations */
+#historyOverlay, #rulesOverlay {
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Image gallery */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    aspect-ratio: 1;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    overflow: auto;
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    margin-top: 5vh;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .nav-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        min-width: 120px;
+    }
+}

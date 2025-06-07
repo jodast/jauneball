@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jauneball - The New Sport</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col">
+    <div class="flex-grow flex flex-col justify-end">
+        <!-- Fullscreen Slideshow -->
+        <div id="slideshow" class="fixed inset-0 z-0">
+            <div class="absolute inset-0 z-10"></div>
+        </div>
+        
+        <!-- Title Container -->
+        <div class="relative z-20 text-center px-4 mb-8">
+            <h1 class="text-6xl md:text-8xl font-bold text-black drop-shadow-2xl pb-4">JAUNEBALL</h1>
+            <h2 class="text-xl md:text-2xl text-gray-900 font-medium drop-shadow-md pb-2">1 vs. 1 Handball auf Unihockeytore</h2>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="bg-gradient-to-t from-black/80 to-transparent pt-2 pb-16 relative z-30">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-wrap justify-center gap-3 md:gap-6">
+                    <a href="#" id="historyBtn" class="nav-btn hover:bg-yellow-500">
+                        <i class="fas fa-history mr-2"></i> History
+                    </a>
+                    <a href="#" id="rulesBtn" class="nav-btn hover:bg-yellow-500">
+                        <i class="fas fa-book mr-2"></i> Rules
+                    </a>
+                    <button id="showImpressionsBtn" class="nav-btn hover:bg-yellow-500 cursor-pointer">
+                        <i class="fas fa-images mr-2"></i> Impressions
+                    </button>
+                    <a href="get-involved.html" class="nav-btn hover:bg-yellow-500">
+                        <i class="fas fa-hands-helping mr-2"></i> Get Involved
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- History Overlay -->
+    <div id="historyOverlay" class="fixed inset-0 bg-black/90 z-50 hidden overflow-y-auto">
+        <div class="container mx-auto px-4 py-16">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-4xl font-bold">History of Jauneball</h2>
+                <button id="closeHistory" class="text-4xl hover:text-gray-400">&times;</button>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="md:col-span-2">
+                    <p class="mb-4 text-lg">Jauneball was born from a desire to create a sport that combines elements of traditional ball games with innovative rules that emphasize fun, strategy, and community.</p>
+                    <p class="mb-4 text-lg">The sport was first conceptualized in 2023 by a group of sports enthusiasts who wanted to develop a game that was easy to learn but difficult to master, with a strong emphasis on fair play and sportsmanship.</p>
+                    <p class="text-lg">Since its inception, Jauneball has grown into a global movement, with local communities organizing tournaments and events to spread the joy of this exciting new sport.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="h-48 bg-gray-800 rounded-lg overflow-hidden">
+                        <img src="images/history1.jpg" alt="Early Jauneball game" class="w-full h-full object-cover">
+                    </div>
+                    <div class="h-48 bg-gray-800 rounded-lg overflow-hidden">
+                        <img src="images/history2.jpg" alt="First Jauneball tournament" class="w-full h-full object-cover">
+                    </div>
+                    <div class="h-48 bg-gray-800 rounded-lg overflow-hidden">
+                        <img src="images/history3.jpg" alt="Jauneball community" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rules Overlay -->
+    <div id="rulesOverlay" class="fixed inset-0 bg-black/90 z-50 hidden overflow-y-auto">
+        <div class="container mx-auto px-4 py-16">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-4xl font-bold">Jauneball Rules</h2>
+                <button id="closeRules" class="text-4xl hover:text-gray-400">&times;</button>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-2xl font-bold mb-4">Basic Rules</h3>
+                    <ul class="space-y-4 text-lg">
+                        <li>• Teams of 5 players compete to score points by getting the ball into the opposing team's goal.</li>
+                        <li>• Players can pass, catch, and throw the ball, but cannot run with it.</li>
+                        <li>• A match consists of three 10-minute periods with 5-minute breaks in between.</li>
+                        <li>• Physical contact is limited - no tackling or aggressive physical play is allowed.</li>
+                        <li>• The team with the most points at the end of the match wins.</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <div class="h-48 bg-gray-800 rounded-lg overflow-hidden">
+                        <img src="images/rule1.jpg" alt="Basic gameplay" class="w-full h-full object-cover">
+                    </div>
+                    <div class="h-48 bg-gray-800 rounded-lg overflow-hidden">
+                        <img src="images/rule2.jpg" alt="Team strategy" class="w-full h-full object-cover">
+                    </div>
+                    <div class="h-48 bg-gray-800 rounded-lg overflow-hidden">
+                        <img src="images/rule3.jpg" alt="Scoring" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    
+    <!-- Impressions Overlay -->
+    <div id="impressionsOverlay" class="fixed inset-0 bg-black/90 z-50 hidden overflow-y-auto">
+        <div class="container mx-auto px-4 py-16">
+            <!-- Close Button -->
+            <div class="flex justify-end mb-8">
+                <button id="closeImpressions" class="text-4xl text-white hover:text-yellow-400 transition-colors">
+                    &times;
+                </button>
+            </div>
+            
+            <!-- Video Section -->
+            <div class="mb-12">
+                <div class="aspect-w-16 aspect-h-9 bg-black rounded-lg overflow-hidden">
+                    <iframe 
+                        src="https://player.vimeo.com/video/1091255653" 
+                        frameborder="0" 
+                        allow="autoplay; fullscreen; picture-in-picture" 
+                        allowfullscreen
+                        class="w-full md:h-[500px]"
+                    ></iframe>
+                </div>
+            </div>
+
+            <!-- Image Gallery -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <!-- Images will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            aspect-ratio: 4/3;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+
+    <script>
+        // Load images into the gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            const gallery = document.querySelector('#impressionsOverlay .grid');
+            const closeBtn = document.getElementById('closeImpressions');
+            const showBtn = document.getElementById('showImpressionsBtn');
+            const overlay = document.getElementById('impressionsOverlay');
+            
+            // Show button functionality
+            if (showBtn) {
+                showBtn.addEventListener('click', function() {
+                    overlay.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+            
+            // Close button functionality
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function() {
+                    overlay.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+            
+            // Close when clicking outside content
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    overlay.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Load images
+            const images = [
+                'images/DSC00765 Kopie.jpg',
+                'images/10-4B8A2197.jpg',
+                'images/DSC01014 Kopie.jpg',
+                'images/21-4B8A1948 Kopie.jpg',
+                'images/37-4B8A2319.jpg',
+                'images/49-4B8A2402.jpg',
+                'images/DSC00774 Kopie.jpg',
+                'images/28-4B8A2286.jpg',
+                'images/DSC00812 Kopie.jpg'
+            ];
+
+            if (gallery) {
+                images.forEach((src, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+                    item.innerHTML = `
+                        <img 
+                            src="${src}" 
+                            alt="Jauneball image ${index + 1}" 
+                            loading="lazy"
+                            class="w-full h-full object-cover"
+                        >
+                    `;
+                    gallery.appendChild(item);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
