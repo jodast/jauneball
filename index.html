@@ -349,43 +349,71 @@
             ];
 
             if (gallery) {
-                // First, detect WebP support
-                getImageUrl('test').then(() => {
-                    // Then load all images with the correct format
-                    imageFiles.forEach(async (src, index) => {
-                        const item = document.createElement('div');
-                        item.className = 'gallery-item group';
-                        
-                        // Get the base filename without path
-                        const baseName = src.replace(/^.*[\\/]/, '');
-                        
-                        // Get the optimized image URL
-                        const optimizedSrc = await getImageUrl(baseName);
-                        
-                        item.innerHTML = `
-                            <div class="relative w-full h-full">
-                                <img 
-                                    src="${optimizedSrc}" 
-                                    alt="Jauneball image ${index + 1}" 
-                                    loading="lazy"
-                                    class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                    data-fullsize="${optimizedSrc}"
-                                >
-                                <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                                    <span class="text-white text-lg font-semibold bg-black/50 px-3 py-1 rounded-full">
-                                        <i class="fas fa-search-plus mr-1"></i> View
-                                    </span>
-                                </div>
+                // First, load all images with original sources immediately
+                imageFiles.forEach((src, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item group';
+                    
+                    item.innerHTML = `
+                        <div class="relative w-full h-full">
+                            <img 
+                                src="${src}" 
+                                alt="Jauneball image ${index + 1}" 
+                                loading="lazy"
+                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                data-fullsize="${src}"
+                            >
+                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span class="text-white text-lg font-semibold bg-black/50 px-3 py-1 rounded-full">
+                                    <i class="fas fa-search-plus mr-1"></i> View
+                                </span>
                             </div>
-                        `;
+                        </div>
+                    `;
+                    
+                    // Store the original source for later optimization
+                    item.dataset.originalSrc = src;
+                    
+                    // Add click event to open image in fullscreen
+                    item.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        openImageViewer(src);
+                    });
+                    
+                    gallery.appendChild(item);
+                });
+                
+                // Then, in the background, upgrade to optimized versions
+                getImageUrl('test').then(() => {
+                    document.querySelectorAll('.gallery-item').forEach(async (item, index) => {
+                        const originalSrc = item.dataset.originalSrc;
+                        if (!originalSrc) return;
                         
-                        // Add click event to open image in fullscreen
-                        item.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            openImageViewer(optimizedSrc);
-                        });
-                        
-                        gallery.appendChild(item);
+                        try {
+                            const baseName = originalSrc.replace(/^.*[\\/]/, '');
+                            const optimizedSrc = await getImageUrl(baseName);
+                            
+                            // Update the image source
+                            const img = item.querySelector('img');
+                            if (img) {
+                                // Only update if the image hasn't been loaded yet
+                                if (!img.complete || img.naturalWidth === 0) {
+                                    img.src = optimizedSrc;
+                                    img.dataset.fullsize = optimizedSrc;
+                                }
+                                
+                                // Update click handler to use optimized version
+                                const newItem = item.cloneNode(true);
+                                newItem.innerHTML = item.innerHTML;
+                                newItem.addEventListener('click', (e) => {
+                                    e.preventDefault();
+                                    openImageViewer(optimizedSrc);
+                                });
+                                item.parentNode.replaceChild(newItem, item);
+                            }
+                        } catch (error) {
+                            console.error('Error optimizing image:', error);
+                        }
                     });
                 });
             }
