@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     slideshow.style.zIndex = '0';
     
     const images = [
+        'images/bg-c32b7ea5.jpg',
         'images/10-4B8A2197.jpg',
         'images/11-4B8A1917 Kopie.jpg',
         'images/14-4B8A1925 Kopie.jpg',

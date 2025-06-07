@@ -3,7 +3,6 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Navigation */
@@ -32,7 +31,7 @@ nav .container {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(13, 14, 15, 0.7); /* Semi-transparent gray */
+    background-color: rgba(13, 14, 15, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.2);
     min-width: 140px;
     text-align: center;
@@ -98,30 +97,19 @@ nav .container {
     z-index: 1;
 }
 
-/* Overlay animations */
-#historyOverlay, #rulesOverlay {
-    transition: opacity 0.3s ease-in-out;
-}
-
-/* Image gallery */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem;
-}
-
+/* Gallery item hover effects */
 .gallery-item {
     position: relative;
     overflow: hidden;
     border-radius: 0.5rem;
-    aspect-ratio: 1;
+    aspect-ratio: 4/3;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery-item:hover {
-    transform: scale(1.02);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
 .gallery-item img {
@@ -129,48 +117,55 @@ nav .container {
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.3s ease;
 }
 
-/* Modal */
-.modal {
-    display: none;
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Fullscreen image viewer */
+#imageViewer {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
-    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.modal-content {
-    margin: auto;
-    display: block;
+#imageViewer.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#imageViewer img {
     max-width: 90%;
     max-height: 90%;
-    margin-top: 5vh;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
-.close {
+#closeViewer {
     position: absolute;
-    top: 20px;
-    right: 30px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
+    top: 1.5rem;
+    right: 2rem;
+    font-size: 3rem;
+    color: white;
+    background: none;
+    border: none;
     cursor: pointer;
+    transition: color 0.2s ease;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .gallery {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
-    
-    .nav-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-        min-width: 120px;
-    }
+#closeViewer:hover {
+    color: #f59e0b;
 }
