@@ -188,10 +188,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Overlay functionality
     const historyBtn = document.getElementById('historyBtn');
     const rulesBtn = document.getElementById('rulesBtn');
+    const showGetInvolvedBtn = document.getElementById('showGetInvolvedBtn');
     const historyOverlay = document.getElementById('historyOverlay');
     const rulesOverlay = document.getElementById('rulesOverlay');
+    const getInvolvedOverlay = document.getElementById('getInvolvedOverlay');
     const closeHistory = document.getElementById('closeHistory');
     const closeRules = document.getElementById('closeRules');
+    const closeGetInvolved = document.getElementById('closeGetInvolved');
     
     // Show history overlay
     if (historyBtn) {
@@ -227,8 +230,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Show get involved overlay
+    if (showGetInvolvedBtn && getInvolvedOverlay) {
+        showGetInvolvedBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            getInvolvedOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+    
+    // Close get involved overlay
+    if (closeGetInvolved) {
+        closeGetInvolved.addEventListener('click', () => {
+            getInvolvedOverlay.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+    }
+    
     // Close overlays when clicking outside content
-    [historyOverlay, rulesOverlay].forEach(overlay => {
+    [historyOverlay, rulesOverlay, getInvolvedOverlay].forEach(overlay => {
         if (overlay) {
             overlay.addEventListener('click', (e) => {
                 if (e.target === overlay) {
@@ -242,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close overlays with Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            [historyOverlay, rulesOverlay].forEach(overlay => {
+            [historyOverlay, rulesOverlay, getInvolvedOverlay].forEach(overlay => {
                 if (overlay && !overlay.classList.contains('hidden')) {
                     overlay.classList.add('hidden');
                     document.body.style.overflow = 'auto';
