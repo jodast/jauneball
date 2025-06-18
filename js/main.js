@@ -102,11 +102,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }));
     };
     
-    // Initialize the slideshow after images are preloaded
+    // Initialize the slideshow immediately with the first image
+    // Other images will be loaded on demand
+    initSlideshow();
+    
+    // Start preloading other images in the background
     preloadImages().then(() => {
-        console.log('All images preloaded');
-        // Continue with slideshow initialization
-        initSlideshow();
+        console.log('All images preloaded in background');
     });
     
     function initSlideshow() {
@@ -132,14 +134,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Set initial background
         let currentImageIndex = 0;
+        let nextImageIndex = 1;
         let activeLayer = 0;
         let isTransitioning = false;
+        let slideshowInterval;
         
-        const setImage = (index) => {
+        // Function to preload the next image in the background
+        const preloadNextImage = () => {
+            if (nextImageIndex >= images.length) return;
+            
+            const img = new Image();
+            img.src = getImagePath(images[nextImageIndex]);
+        };
+        
+        const setImage = async (index) => {
             if (isTransitioning) return;
             isTransitioning = true;
             
-            const imgPath = getImagePath(images[index]);
+            // Get the appropriate image URL based on WebP support
+            const useWebP = await supportsWebP();
+            const extension = useWebP ? 'webp' : 'jpg';
+            const baseName = imageBases[index];
+            const imgPath = `images/optimized/${baseName}${useWebP ? '' : '-optimized'}.${extension}`;
+            
             console.log('Setting image:', imgPath);
             
             // Set the new image on the inactive layer
@@ -157,6 +174,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 activeLayer = inactiveLayer;
                 isTransitioning = false;
                 console.log('Image changed to:', imgPath);
+                
+                // Preload the next image in the background
+                nextImageIndex = (index + 1) % images.length;
+                preloadNextImage();
             };
             
             newImg.onerror = (e) => {
@@ -167,21 +188,34 @@ document.addEventListener('DOMContentLoaded', function() {
             newImg.src = imgPath;
         };
         
-        // Set first image
-        const firstImg = new Image();
-        firstImg.onload = () => {
-            slideshowLayers[0].style.backgroundImage = `url('${getImagePath(images[0])}')`;
-            // Start slideshow after first image is loaded
-            startSlideshow();
-        };
-        firstImg.src = getImagePath(images[0]);
+        // Set first image (load immediately)
+        (async () => {
+            const useWebP = await supportsWebP();
+            const extension = useWebP ? 'webp' : 'jpg';
+            const firstImgPath = `images/optimized/${imageBases[0]}${useWebP ? '' : '-optimized'}.${extension}`;
+            const firstImg = new Image();
+            
+            firstImg.onload = () => {
+                slideshowLayers[0].style.backgroundImage = `url('${firstImgPath}')`;
+                // Start slideshow after first image is loaded
+                startSlideshow();
+                // Start preloading the next image
+                preloadNextImage();
+            };
+            firstImg.src = firstImgPath;
+        })();
         
         function startSlideshow() {
+            // Clear any existing interval
+            if (slideshowInterval) {
+                clearInterval(slideshowInterval);
+            }
+            
             // Change image every 5 seconds
-            setInterval(() => {
+            slideshowInterval = setInterval(() => {
                 currentImageIndex = (currentImageIndex + 1) % images.length;
                 setImage(currentImageIndex);
-            }, 3000);
+            }, 5000);
         }
     }
     
