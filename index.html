@@ -123,7 +123,7 @@
             <!-- Close Button -->
             <div class="flex flex-col items-center mb-8">
                 <div class="w-full flex justify-between items-center">
-                    <h2 class="text-4xl font-bold mx-auto">Eigenes Turnier organisieren?</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold mx-auto px-6">Eigenes Turnier organisieren?</h2>
                     <button id="closeGetInvolved" class="text-4xl hover:text-yellow-400">&times;</button>
                 </div>
             </div>
@@ -135,73 +135,97 @@
                 <!-- Resources Grid -->
                 <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
                     <!-- Turnier Excel Tabelle -->
-                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors">
-                        <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-table text-amber-400 text-xl"></i>
+                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
+                        <div>
+                            <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-table text-amber-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Turnier Excel Tabelle</h3>
+                            <p class="text-gray-300 mb-4">Vorlage zur Erfassung von Spielern, Spielplan und Ergebnissen</p>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2">Turnier Excel Tabelle</h3>
-                        <p class="text-gray-300 mb-4">Vorlage zur Erfassung von Spielern, Spielplan und Ergebnissen</p>
-                        <a href="#" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full transition-colors">
-                            <i class="fas fa-download mr-2"></i> Herunterladen
-                        </a>
+                        <div class="mt-auto">
+                            <a href="#" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full transition-colors">
+                                <i class="fas fa-download mr-2"></i> Herunterladen
+                            </a>
+                        </div>
                     </div>
 
                     <!-- Offizieller Spielball -->
-                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors">
-                        <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-futbol text-amber-400 text-xl"></i>
+                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
+                        <div>
+                            <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-futbol text-amber-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Offizieller Spielball</h3>
+                            <p class="text-gray-300 mb-4">Der offizielle Jauneball für authentisches Spielgefühl</p>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2">Offizieller Spielball</h3>
-                        <p class="text-gray-300 mb-4">Der offizielle Jauneball für authentisches Spielgefühl</p>
-                        <a href="https://www.galaxus.ch/de/s5/product/androni-softball-kinderball-44873822" target="_blank" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full transition-colors">
-                            <i class="fas fa-shopping-cart mr-2"></i> Jetzt bestellen
-                        </a>
+                        <div class="mt-auto">
+                            <a href="https://www.galaxus.ch/de/s5/product/androni-softball-kinderball-44873822" target="_blank" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full transition-colors">
+                                <i class="fas fa-shopping-cart mr-2"></i> Jetzt bestellen
+                            </a>
+                        </div>
                     </div>
 
                     <!-- Anspielmünze / Wählmarke -->
-                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors">
-                        <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-coins text-amber-400 text-xl"></i>
+                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
+                        <div>
+                            <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-coins text-amber-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Anspielmünze / Wählmarke</h3>
+                            <p class="text-gray-300 mb-4">Offizielle Münze für die Auslosung von Anspiel und Seitenwahl</p>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2">Anspielmünze / Wählmarke</h3>
-                        <p class="text-gray-300 mb-4">Offizielle Münze für die Auslosung von Anspiel und Seitenwahl</p>
-                        <a href="https://www.teamsportbedarf.de/fussball/schiedsrichter/schiedsrichter-waehlmarke-farbe-rot-schwarz_3425_20740" target="_blank" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full transition-colors">
-                            <i class="fas fa-shopping-cart mr-2"></i> Jetzt bestellen
-                        </a>
+                        <div class="mt-auto">
+                            <a href="https://www.teamsportbedarf.de/fussball/schiedsrichter/schiedsrichter-waehlmarke-farbe-rot-schwarz_3425_20740" target="_blank" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full transition-colors">
+                                <i class="fas fa-shopping-cart mr-2"></i> Jetzt bestellen
+                            </a>
+                        </div>
                     </div>
 
                     <!-- Auslosungskugel -->
-                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors">
-                        <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-basketball-ball text-amber-400 text-xl"></i>
+                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
+                        <div>
+                            <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-basketball-ball text-amber-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Auslosungskugel</h3>
+                            <p class="text-gray-300 mb-4">Professionelle Lostrommel für die Auslosung der Spielpaarungen</p>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2">Auslosungskugel</h3>
-                        <p class="text-gray-300 mb-4">Professionelle Lostrommel für die Auslosung der Spielpaarungen</p>
-                        <a href="https://shop.tombotto.ch/produkt-kategorie/tombola/leerkapseln-tombola" target="_blank" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full transition-colors">
-                            <i class="fas fa-shopping-cart mr-2"></i> Jetzt bestellen
-                        </a>
+                        <div class="mt-auto">
+                            <a href="https://shop.tombotto.ch/produkt-kategorie/tombola/leerkapseln-tombola" target="_blank" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full transition-colors">
+                                <i class="fas fa-shopping-cart mr-2"></i> Jetzt bestellen
+                            </a>
+                        </div>
                     </div>
                     <!-- Shirts gestalten -->
-                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors">
-                        <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-basketball-ball text-amber-400 text-xl"></i>
+                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
+                        <div>
+                            <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-shirt text-amber-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Shirts gestalten</h3>
+                            <p class="text-gray-300 mb-4">Erstelle individuelle Team-Trikots für dein Turnier</p>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2">Shirts gestalten</h3>
-                        <p class="text-gray-300 mb-4">Erstelle individuelle Team-Trikots für dein Turnier</p>
-                        <a href="https://www.Owayo.de" target="_blank" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full transition-colors">
-                            <i class="fas fa-paint-brush mr-2"></i> Jetzt gestalten
-                        </a>
+                        <div class="mt-auto">
+                            <a href="https://www.Owayo.de" target="_blank" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full transition-colors">
+                                <i class="fas fa-paint-brush mr-2"></i> Jetzt gestalten
+                            </a>
+                        </div>
                     </div>
                     <!-- Spielerkarte erstellen -->
-                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors">
-                        <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
-                            <i class="fas fa-basketball-ball text-amber-400 text-xl"></i>
+                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
+                        <div>
+                            <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-paint-brush text-amber-400 text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2">Spielerkarte erstellen</h3>
+                            <p class="text-gray-300 mb-4">Vorlage für professionelle Spielerausweise und Loszettel</p>
                         </div>
-                        <h3 class="text-2xl font-bold mb-2">Spielerkarte erstellen</h3>
-                        <p class="text-gray-300 mb-4">Vorlage für professionelle Spielerausweise und Loszettel</p>
-                        <a href="http://www.canva.com" target="_blank" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full transition-colors">
-                            <i class="fas fa-paint-brush mr-2"></i> Jetzt erstellen
-                        </a>
+                        <div class="mt-auto">
+                            <a href="http://www.canva.com" target="_blank" class="inline-flex items-center px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full transition-colors">
+                                <i class="fas fa-paint-brush mr-2"></i> Jetzt erstellen
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <!-- Contact Section -->
