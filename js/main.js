@@ -282,19 +282,89 @@ document.addEventListener('DOMContentLoaded', async function() {
     const historyBtn = document.getElementById('historyBtn');
     const rulesBtn = document.getElementById('rulesBtn');
     const showGetInvolvedBtn = document.getElementById('showGetInvolvedBtn');
+    const showImpressionsBtn = document.getElementById('showImpressionsBtn');
     const historyOverlay = document.getElementById('historyOverlay');
     const rulesOverlay = document.getElementById('rulesOverlay');
     const getInvolvedOverlay = document.getElementById('getInvolvedOverlay');
+    const impressionsOverlay = document.getElementById('impressionsOverlay');
     const closeHistory = document.getElementById('closeHistory');
     const closeRules = document.getElementById('closeRules');
     const closeGetInvolved = document.getElementById('closeGetInvolved');
+    const closeImpressions = document.getElementById('closeImpressions');
+    
+    // Map of overlay IDs to their corresponding hash
+    const overlayMap = {
+        'historyOverlay': 'geschichte',
+        'rulesOverlay': 'regelwerk',
+        'impressionsOverlay': 'impressionen',
+        'getInvolvedOverlay': 'turnier'
+    };
+    
+    // Function to update URL and show overlay
+    function showOverlay(overlay, hash) {
+        // Hide all overlays first
+        [historyOverlay, rulesOverlay, getInvolvedOverlay, impressionsOverlay].forEach(ov => {
+            if (ov) ov.classList.add('hidden');
+        });
+        
+        // Show the requested overlay
+        if (overlay) {
+            overlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            
+            // Update URL with hash without page reload
+            if (hash && history.pushState) {
+                history.pushState(null, null, '#' + hash);
+            }
+        }
+    }
+    
+    // Function to close all overlays and update URL
+    function closeAllOverlays() {
+        [historyOverlay, rulesOverlay, getInvolvedOverlay, impressionsOverlay].forEach(overlay => {
+            if (overlay) overlay.classList.add('hidden');
+        });
+        document.body.style.overflow = 'auto';
+        
+        // Update URL to remove hash without page reload
+        if (history.pushState) {
+            history.pushState(null, null, ' ');
+        } else {
+            location.hash = '';
+        }
+    }
+    
+    // Check URL hash on page load
+    function checkHashOnLoad() {
+        const hash = window.location.hash.substring(1);
+        if (!hash) return;
+        
+        // Find which overlay this hash corresponds to
+        const overlayId = Object.keys(overlayMap).find(key => overlayMap[key] === hash);
+        if (!overlayId) return;
+        
+        // Show the corresponding overlay
+        const overlay = document.getElementById(overlayId);
+        if (overlay) {
+            showOverlay(overlay, hash);
+        }
+    }
+    
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', () => {
+        const hash = window.location.hash.substring(1);
+        if (!hash) {
+            closeAllOverlays();
+        } else {
+            checkHashOnLoad();
+        }
+    });
     
     // Show history overlay
     if (historyBtn) {
         historyBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            historyOverlay.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
+            showOverlay(historyOverlay, 'geschichte');
         });
     }
     
@@ -302,24 +372,15 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (rulesBtn) {
         rulesBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            rulesOverlay.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
+            showOverlay(rulesOverlay, 'regelwerk');
         });
     }
     
-    // Close history overlay
-    if (closeHistory) {
-        closeHistory.addEventListener('click', () => {
-            historyOverlay.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        });
-    }
-    
-    // Close rules overlay
-    if (closeRules) {
-        closeRules.addEventListener('click', () => {
-            rulesOverlay.classList.add('hidden');
-            document.body.style.overflow = 'auto';
+    // Show impressions overlay
+    if (showImpressionsBtn && impressionsOverlay) {
+        showImpressionsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showOverlay(impressionsOverlay, 'impressionen');
         });
     }
     
@@ -327,40 +388,51 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (showGetInvolvedBtn && getInvolvedOverlay) {
         showGetInvolvedBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            getInvolvedOverlay.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
+            showOverlay(getInvolvedOverlay, 'turnier');
         });
+    }
+    
+    // Close history overlay
+    if (closeHistory) {
+        closeHistory.addEventListener('click', closeAllOverlays);
+    }
+    
+    // Close rules overlay
+    if (closeRules) {
+        closeRules.addEventListener('click', closeAllOverlays);
+    }
+    
+    // Close impressions overlay
+    if (closeImpressions) {
+        closeImpressions.addEventListener('click', closeAllOverlays);
     }
     
     // Close get involved overlay
     if (closeGetInvolved) {
-        closeGetInvolved.addEventListener('click', () => {
-            getInvolvedOverlay.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        });
+        closeGetInvolved.addEventListener('click', closeAllOverlays);
     }
     
     // Close overlays when clicking outside content
-    [historyOverlay, rulesOverlay, getInvolvedOverlay].forEach(overlay => {
+    [historyOverlay, rulesOverlay, getInvolvedOverlay, impressionsOverlay].forEach(overlay => {
         if (overlay) {
             overlay.addEventListener('click', (e) => {
                 if (e.target === overlay) {
-                    overlay.classList.add('hidden');
-                    document.body.style.overflow = 'auto';
+                    closeAllOverlays();
                 }
             });
         }
     });
     
+    // Check for hash on page load
+    document.addEventListener('DOMContentLoaded', checkHashOnLoad);
+    
+    // Also check hash in case DOMContentLoaded already fired
+    checkHashOnLoad();
+    
     // Close overlays with Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            [historyOverlay, rulesOverlay, getInvolvedOverlay].forEach(overlay => {
-                if (overlay && !overlay.classList.contains('hidden')) {
-                    overlay.classList.add('hidden');
-                    document.body.style.overflow = 'auto';
-                }
-            });
+            closeAllOverlays();
         }
     });
 });
