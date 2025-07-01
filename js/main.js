@@ -15,13 +15,29 @@ function showSlideshow() {
     }, 1000);
 }
 
+// Detect mobile devices based on screen width and aspect ratio
+const isMobile = () => {
+    // Check screen width (common mobile breakpoint is 768px)
+    const isSmallScreen = window.innerWidth <= 768;
+    
+    // Check aspect ratio (portrait orientation or very tall screens)
+    const aspectRatio = window.innerWidth / window.innerHeight;
+    const isPortrait = aspectRatio < 1;
+    const isTallScreen = aspectRatio < 0.7; // Very tall/thin screens
+    
+    // Consider it mobile if either:
+    // 1. Screen is small (width <= 768px) and in portrait mode, or
+    // 2. Screen is very tall (ultra-wide or folded phones in portrait)
+    return (isSmallScreen && isPortrait) || isTallScreen;
+};
+
 // Function to load the initial placeholder image
 function loadInitialImage() {
     return new Promise((resolve) => {
         const initialLoad = document.getElementById('initial-load');
         if (!initialLoad) return resolve();
         
-        fetch('images/1.txt')
+        fetch(isMobile() ? 'images/1-mobile.txt' : 'images/1.txt')
             .then(response => response.text())
             .then(base64Data => {
                 initialLoad.style.backgroundImage = `url('data:image/jpeg;base64, ${base64Data}')`;
@@ -63,44 +79,56 @@ document.addEventListener('DOMContentLoaded', async function() {
     slideshow.style.height = '100%';
     slideshow.style.zIndex = '0';
     
-    // Base image paths for the slideshow (without extension)
     const slideshowImageBases = [
-        'images/slideshow/optimized/10-4B8A2197-optimized',
-        'images/slideshow/optimized/14-4B8A1925 Kopie-optimized',
-        'images/slideshow/optimized/16-4B8A2218-optimized',
-        'images/slideshow/optimized/25-4B8A2273-optimized',
-        'images/slideshow/optimized/29-4B8A2298-optimized',
-        'images/slideshow/optimized/38-4B8A2335-optimized',
-        'images/slideshow/optimized/41-4B8A2355-optimized',
-        'images/slideshow/optimized/46-4B8A2388-optimized',
-        'images/slideshow/optimized/47-4B8A2394-optimized',
-        'images/slideshow/optimized/51-4B8A2406-optimized',
-        'images/slideshow/optimized/52-4B8A2410-optimized',
-        'images/slideshow/optimized/53-4B8A2413-optimized',
-        'images/slideshow/optimized/DSC00667 Kopie-optimized',
-        'images/slideshow/optimized/DSC00865 Kopie-optimized',
-        'images/slideshow/optimized/DSC00891 Kopie-optimized',
-        'images/slideshow/optimized/DSC00921 Kopie-optimized',
-        'images/slideshow/optimized/DSC00929 Kopie-optimized',
-        'images/slideshow/optimized/DSC01014 Kopie-optimized',
-        'images/slideshow/optimized/DSC01031 Kopie-optimized',
-        'images/slideshow/optimized/DSC01040-2 Kopie-optimized'
+        '10-4B8A2197-optimized',
+        '14-4B8A1925 Kopie-optimized',
+        '16-4B8A2218-optimized',
+        '25-4B8A2273-optimized',
+        '29-4B8A2298-optimized',
+        '38-4B8A2335-optimized',
+        '41-4B8A2355-optimized',
+        '46-4B8A2388-optimized',
+        '47-4B8A2394-optimized',
+        '51-4B8A2406-optimized',
+        '52-4B8A2410-optimized',
+        '53-4B8A2413-optimized',
+        'DSC00667 Kopie-optimized',
+        'DSC00865 Kopie-optimized',
+        'DSC00891 Kopie-optimized',
+        'DSC00921 Kopie-optimized',
+        'DSC00929 Kopie-optimized',
+        'DSC01014 Kopie-optimized',
+        'DSC01031 Kopie-optimized',
+        'DSC01040-2 Kopie-optimized'
+    ];
+
+    const slideshowImageBasesMobile = [
+        '10-4B8A2197-optimized',
+        '17-4B8A2233-optimized',
+        '19-4B8A2249-optimized',
+        '25-4B8A2273-optimized',
+        '29-4B8A2298-optimized',
+        '37-4B8A2319-optimized',
+        '38-4B8A2335-optimized',
+        '41-4B8A2355-optimized',
+        '46-4B8A2388-optimized',
+        '47-4B8A2394-optimized',
+        '49-4B8A2402-optimized',
+        '53-4B8A2413-optimized',
+        'DSC00812 Kopie 2-optimized',
+        'DSC00921 Kopie-optimized',
+        'DSC00929 Kopie-optimized',
+        'DSC01014 Kopie-optimized',
+        'DSC01040-2 Kopie-optimized'
     ];
 
     // Initialize WebP support flag
     let supportsWebPValue = false;
     
-    // // Function to get the appropriate image URL with WebP support
-    // const getImageUrl = async (index) => {
-    //     const basePath = slideshowImageBases[index % slideshowImageBases.length];
-    //     // If WebP is supported, use .webp extension, otherwise use .jpg
-    //     const extension = supportsWebPValue ? '.webp' : '.jpg';
-    //     return `${basePath}${extension}`;
-    // };
-
     // Initialize images array with proper extensions based on WebP support
     let images = [];
     let webPInitialized = false;
+    
     
     // Initialize WebP support and image paths
     async function initializeWebPSupport() {
@@ -109,18 +137,25 @@ document.addEventListener('DOMContentLoaded', async function() {
         supportsWebPValue = await supportsWebP();
         console.log(`WebP support: ${supportsWebPValue ? 'Enabled' : 'Not available'}`);
         
+        // Get base paths for images (mobile or desktop)
+        const basePath = isMobile() ? 'images/slideshow/mobile/optimized/' : 'images/slideshow/optimized/';
+        
         // Initialize image paths with correct extensions and naming
-        images = slideshowImageBases.map(base => {
+        images = (isMobile() ? slideshowImageBasesMobile : slideshowImageBases).map(base => {
+            // Remove any existing path and get just the filename
+            const filename = base.split('/').pop();
+            const baseName = filename.replace(/-optimized$/, '');
+            
             if (supportsWebPValue) {
                 // For WebP, remove the -optimized suffix
-                const webpBase = base.replace(/-optimized$/, '');
-                return `${webpBase}.webp`;
+                return `${basePath}${baseName}.webp`;
             } else {
                 // For JPG, keep the -optimized suffix
-                return `${base}.jpg`;
+                return `${basePath}${baseName}-optimized.jpg`;
             }
         });
         
+        console.log(`Using ${isMobile() ? 'mobile' : 'desktop'} images`);
         webPInitialized = true;
     }
     
@@ -148,6 +183,24 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Initialize the slideshow timing variables first
     const minDisplayTime = 6000; // 6 seconds in milliseconds
     let loadStartTime;
+    
+    // Function to handle screen resize and orientation changes
+    let resizeTimeout;
+    const handleResize = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(async () => {
+            console.log('Screen size changed, reloading images...');
+            // Reset the WebP initialization to reload images with the correct paths
+            webPInitialized = false;
+            await initializeWebPSupport();
+            await preloadImages();
+            console.log('Images reloaded for', isMobile() ? 'mobile' : 'desktop', 'view');
+        }, 250); // Debounce resize events
+    };
+
+    // Add event listeners for resize and orientation change
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
     
     // Initialize WebP support and then start the slideshow
     initializeWebPSupport().then(async () => {
