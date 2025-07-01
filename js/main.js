@@ -1,4 +1,43 @@
-document.addEventListener('DOMContentLoaded', function() {
+// Function to handle the transition from initial load to slideshow
+function showSlideshow() {
+    const initialLoad = document.getElementById('initial-load');
+    const slideshow = document.getElementById('slideshow');
+    
+    // Fade out the initial load
+    initialLoad.style.opacity = '0';
+    
+    // Fade in the slideshow
+    slideshow.style.opacity = '1';
+    
+    // Remove the initial load after the transition
+    setTimeout(() => {
+        initialLoad.style.display = 'none';
+    }, 1000);
+}
+
+// Function to load the initial placeholder image
+function loadInitialImage() {
+    return new Promise((resolve) => {
+        const initialLoad = document.getElementById('initial-load');
+        if (!initialLoad) return resolve();
+        
+        fetch('images/1.txt')
+            .then(response => response.text())
+            .then(base64Data => {
+                initialLoad.style.backgroundImage = `url('data:image/jpeg;base64, ${base64Data}')`;
+                resolve();
+            })
+            .catch(error => {
+                console.error('Error loading placeholder image:', error);
+                resolve(); // Resolve anyway to continue
+            });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
+    // Load initial placeholder immediately
+    await loadInitialImage();
+    
     // Slideshow functionality
     const slideshow = document.getElementById('slideshow');
     if (!slideshow) {
@@ -24,91 +63,89 @@ document.addEventListener('DOMContentLoaded', function() {
     slideshow.style.height = '100%';
     slideshow.style.zIndex = '0';
     
-    // Base image paths (without extension)
-    const imageBases = [
-        'bg-c32b7ea5',
-        '10-4B8A2197',
-        '11-4B8A1917 Kopie',
-        '14-4B8A1925 Kopie',
-        '16-4B8A2218',
-        '17-4B8A2233',
-        '19-4B8A2249',
-        '21-4B8A1948 Kopie',
-        '22-4B8A2253',
-        '25-4B8A2273',
-        '28-4B8A2286',
-        '29-4B8A2298',
-        '37-4B8A2319',
-        '38-4B8A2335',
-        '41-4B8A2355',
-        '43-4B8A2359',
-        '46-4B8A2388',
-        '47-4B8A2394',
-        '48-4B8A2398',
-        '49-4B8A2402',
-        '50-4B8A2405',
-        '51-4B8A2406',
-        '52-4B8A2410',
-        '53-4B8A2413',
-        '6-4B8A2185',
-        'DSC00667 Kopie',
-        'DSC00765 Kopie',
-        'DSC00769 Kopie',
-        'DSC00774 Kopie',
-        'DSC00775 Kopie',
-        'DSC00812 Kopie',
-        'DSC00865 Kopie',
-        'DSC00891 Kopie',
-        'DSC00921 Kopie',
-        'DSC00929 Kopie',
-        'DSC00974 Kopie',
-        'DSC01014 Kopie'
+    // Image paths for the slideshow
+    const slideshowImages = [
+        'images/slideshow/optimized/10-4B8A2197-optimized.jpg',
+        'images/slideshow/optimized/14-4B8A1925 Kopie-optimized.jpg',
+        'images/slideshow/optimized/16-4B8A2218-optimized.jpg',
+        'images/slideshow/optimized/25-4B8A2273-optimized.jpg',
+        'images/slideshow/optimized/29-4B8A2298-optimized.jpg',
+        'images/slideshow/optimized/38-4B8A2335-optimized.jpg',
+        'images/slideshow/optimized/41-4B8A2355-optimized.jpg',
+        'images/slideshow/optimized/46-4B8A2388-optimized.jpg',
+        'images/slideshow/optimized/47-4B8A2394-optimized.jpg',
+        'images/slideshow/optimized/51-4B8A2406-optimized.jpg',
+        'images/slideshow/optimized/52-4B8A2410-optimized.jpg',
+        'images/slideshow/optimized/53-4B8A2413-optimized.jpg',
+        'images/slideshow/optimized/DSC00667 Kopie-optimized.jpg',
+        'images/slideshow/optimized/DSC00865 Kopie-optimized.jpg',
+        'images/slideshow/optimized/DSC00891 Kopie-optimized.jpg',
+        'images/slideshow/optimized/DSC00921 Kopie-optimized.jpg',
+        'images/slideshow/optimized/DSC00929 Kopie-optimized.jpg',
+        'images/slideshow/optimized/DSC01014 Kopie-optimized.jpg',
+        'images/slideshow/optimized/DSC01031 Kopie-optimized.jpg',
+        'images/slideshow/optimized/DSC01040-2 Kopie-optimized.jpg'
     ];
 
     // Function to get the appropriate image URL
-    const getImageUrl = async (baseName) => {
-        const useWebP = await supportsWebP();
-        const extension = useWebP ? 'webp' : 'jpg';
-        return `images/optimized/${baseName}${useWebP ? '' : '-optimized'}.${extension}`;
+    const getImageUrl = async (index) => {
+        return slideshowImages[index];
     };
 
-    // Convert base names to full URLs with proper extensions
-    let images = [];
+    // Initialize images array
+    let images = [...slideshowImages];
     let webPInitialized = false;
-    
-    // Add remaining images to the base list
-    imageBases.push('DSC01031 Kopie', 'DSC01040-2 Kopie');
-    
-    // Initialize images with placeholder, will be updated after WebP check
-    images = imageBases.map(base => `images/optimized/${base}-optimized.jpg`);
     
     // Function to preload all images
     const preloadImages = async () => {
-        const useWebP = await supportsWebP();
-        const extension = useWebP ? 'webp' : 'jpg';
-        
-        // Update all image paths based on WebP support
-        images = imageBases.map(base => 
-            `images/optimized/${base}${useWebP ? '' : '-optimized'}.${extension}`
-        );
-        
-        // Preload all images
-        return Promise.all(images.map(src => {
+        return Promise.all(slideshowImages.map(src => {
             return new Promise((resolve) => {
                 const img = new Image();
-                img.onload = img.onerror = resolve;
+                img.onload = () => {
+                    console.log(`Loaded: ${src}`);
+                    resolve();
+                };
+                img.onerror = (e) => {
+                    console.error(`Error loading: ${src}`, e);
+                    resolve(); // Resolve anyway to not block the slideshow
+                };
                 img.src = src;
             });
         }));
     };
     
-    // Initialize the slideshow immediately with the first image
-    // Other images will be loaded on demand
+    // Start preloading all slideshow images
+    const preloadPromise = preloadImages();
+    
+    // Initialize the slideshow (won't be visible yet)
     initSlideshow();
     
-    // Start preloading other images in the background
-    preloadImages().then(() => {
-        console.log('All images preloaded in background');
+    // When all images are loaded, wait until at least 5 seconds have passed before showing slideshow
+    const minDisplayTime = 6000; // 5 seconds in milliseconds
+    const loadStartTime = Date.now();
+    
+    preloadPromise.then(() => {
+        console.log('All slideshow images loaded');
+        const elapsedTime = Date.now() - loadStartTime;
+        const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
+        
+        console.log(`Waiting additional ${remainingTime}ms before showing slideshow`);
+        
+        // Show slideshow after the remaining time or immediately if already past 5 seconds
+        setTimeout(() => {
+            console.log('Showing slideshow after minimum display time');
+            showSlideshow();
+        }, remainingTime);
+    }).catch(error => {
+        console.error('Error preloading images:', error);
+        // Still respect the minimum display time even if there were errors
+        const elapsedTime = Date.now() - loadStartTime;
+        const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
+        
+        setTimeout(() => {
+            console.log('Showing slideshow after error and minimum display time');
+            showSlideshow();
+        }, remainingTime);
     });
     
     function initSlideshow() {
@@ -151,11 +188,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (isTransitioning) return;
             isTransitioning = true;
             
-            // Get the appropriate image URL based on WebP support
-            const useWebP = await supportsWebP();
-            const extension = useWebP ? 'webp' : 'jpg';
-            const baseName = imageBases[index];
-            const imgPath = `images/optimized/${baseName}${useWebP ? '' : '-optimized'}.${extension}`;
+                // Get the image path directly from our slideshow images array
+            const imgPath = slideshowImages[index % slideshowImages.length];
             
             console.log('Setting image:', imgPath);
             
@@ -190,9 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Set first image (load immediately)
         (async () => {
-            const useWebP = await supportsWebP();
-            const extension = useWebP ? 'webp' : 'jpg';
-            const firstImgPath = `images/optimized/${imageBases[0]}${useWebP ? '' : '-optimized'}.${extension}`;
+            const firstImgPath = slideshowImages[0];
             const firstImg = new Image();
             
             firstImg.onload = () => {

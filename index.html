@@ -21,8 +21,11 @@
             <h2 class="text-2xl md:text-2xl pt-2 md:pt-0 text-white font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">1 vs. 1 Handball auf Unihockeytore</h2>
         </div>
         
-        <!-- Fullscreen Slideshow -->
-        <div id="slideshow" class="fixed inset-0 z-0">
+        <!-- Initial Loading Placeholder (base64 encoded 1.jpg) -->
+        <div id="initial-load" class="fixed inset-0 z-0" style="opacity: 1; transition: opacity 1s ease-out;"></div>
+        
+        <!-- Fullscreen Slideshow (initially hidden) -->
+        <div id="slideshow" class="fixed inset-0 z-0" style="opacity: 0; transition: opacity 1s ease-in-out;">
             <div class="absolute inset-0 z-10"></div>
         </div>
 
@@ -108,16 +111,16 @@
                 </div>
                 <div class="space-y-4">
                     <div class="h-48 bg-gray-800 rounded-lg overflow-hidden">
-                        <img src="images/16-4B8A2218.jpg" alt="Basic gameplay" class="w-full h-full object-cover">
+                        <img src="images/rules/1.webp" alt="Basic gameplay" class="w-full h-full object-cover">
                     </div>
                     <div class="h-48 bg-gray-800 rounded-lg overflow-hidden">
-                        <img src="images/22-4B8A2253.jpg" alt="Team strategy" class="w-full h-full object-cover">
+                        <img src="images/rules/2.jpg" alt="Team strategy" class="w-full h-full object-cover">
                     </div>
                     <div class="h-48 bg-gray-800 rounded-lg overflow-hidden">
-                        <img src="images/37-4B8A2319.jpg" alt="Scoring" class="w-full h-full object-cover">
+                        <img src="images/rules/3.jpg" alt="Scoring" class="w-full h-full object-cover">
                     </div>
                     <div class="h-48 bg-gray-800 rounded-lg overflow-hidden">
-                        <img src="images/51-4B8A2406.jpg" alt="Jauneball community" class="w-full h-full object-cover">
+                        <img src="images/rules/4.jpg" alt="Jauneball community" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
@@ -273,7 +276,7 @@
             </div>
 
             <!-- Image Gallery -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <div id="impressionsGallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                 <!-- Images will be loaded here by JavaScript -->
             </div>
         </div>
@@ -429,45 +432,45 @@
 
             // Load images
             const imageFiles = [
-                'images/bg-c32b7ea5.jpg',
-                'images/10-4B8A2197.jpg',
-                'images/11-4B8A1917 Kopie.jpg',
-                'images/14-4B8A1925 Kopie.jpg',
-                'images/16-4B8A2218.jpg',
-                'images/17-4B8A2233.jpg',
-                'images/19-4B8A2249.jpg',
-                'images/21-4B8A1948 Kopie.jpg',
-                'images/22-4B8A2253.jpg',
-                'images/25-4B8A2273.jpg',
-                'images/28-4B8A2286.jpg',
-                'images/29-4B8A2298.jpg',
-                'images/37-4B8A2319.jpg',
-                'images/38-4B8A2335.jpg',
-                'images/41-4B8A2355.jpg',
-                'images/43-4B8A2359.jpg',
-                'images/46-4B8A2388.jpg',
-                'images/47-4B8A2394.jpg',
-                'images/48-4B8A2398.jpg',
-                'images/49-4B8A2402.jpg',
-                'images/50-4B8A2405.jpg',
-                'images/51-4B8A2406.jpg',
-                'images/52-4B8A2410.jpg',
-                'images/53-4B8A2413.jpg',
-                'images/6-4B8A2185.jpg',
-                'images/DSC00667 Kopie.jpg',
-                'images/DSC00765 Kopie.jpg',
-                'images/DSC00769 Kopie.jpg',
-                'images/DSC00774 Kopie.jpg',
-                'images/DSC00775 Kopie.jpg',
-                'images/DSC00812 Kopie.jpg',
-                'images/DSC00865 Kopie.jpg',
-                'images/DSC00891 Kopie.jpg',
-                'images/DSC00921 Kopie.jpg',
-                'images/DSC00929 Kopie.jpg',
-                'images/DSC00974 Kopie.jpg',
-                'images/DSC01014 Kopie.jpg',
-                'images/DSC01031 Kopie.jpg',
-                'images/DSC01040-2 Kopie.jpg'
+                'images/impressions/1.jpg',
+                'images/impressions/10-4B8A2197.jpg',
+                'images/impressions/11-4B8A1917 Kopie.jpg',
+                'images/impressions/14-4B8A1925 Kopie.jpg',
+                'images/impressions/16-4B8A2218.jpg',
+                'images/impressions/17-4B8A2233.jpg',
+                'images/impressions/19-4B8A2249.jpg',
+                'images/impressions/21-4B8A1948 Kopie.jpg',
+                'images/impressions/22-4B8A2253.jpg',
+                'images/impressions/25-4B8A2273.jpg',
+                'images/impressions/28-4B8A2286.jpg',
+                'images/impressions/29-4B8A2298.jpg',
+                'images/impressions/37-4B8A2319.jpg',
+                'images/impressions/38-4B8A2335.jpg',
+                'images/impressions/41-4B8A2355.jpg',
+                'images/impressions/43-4B8A2359.jpg',
+                'images/impressions/46-4B8A2388.jpg',
+                'images/impressions/47-4B8A2394.jpg',
+                'images/impressions/48-4B8A2398.jpg',
+                'images/impressions/49-4B8A2402.jpg',
+                'images/impressions/50-4B8A2405.jpg',
+                'images/impressions/51-4B8A2406.jpg',
+                'images/impressions/52-4B8A2410.jpg',
+                'images/impressions/53-4B8A2413.jpg',
+                'images/impressions/6-4B8A2185.jpg',
+                'images/impressions/DSC00667 Kopie.jpg',
+                'images/impressions/DSC00765 Kopie.jpg',
+                'images/impressions/DSC00769 Kopie.jpg',
+                'images/impressions/DSC00774 Kopie.jpg',
+                'images/impressions/DSC00775 Kopie.jpg',
+                'images/impressions/DSC00812 Kopie.jpg',
+                'images/impressions/DSC00865 Kopie.jpg',
+                'images/impressions/DSC00891 Kopie.jpg',
+                'images/impressions/DSC00921 Kopie.jpg',
+                'images/impressions/DSC00929 Kopie.jpg',
+                'images/impressions/DSC00974 Kopie.jpg',
+                'images/impressions/DSC01014 Kopie.jpg',
+                'images/impressions/DSC01031 Kopie.jpg',
+                'images/impressions/DSC01040-2 Kopie.jpg'
             ];
 
             if (gallery) {
@@ -480,11 +483,11 @@
                     item.innerHTML = `
                         <div class="relative w-full h-full">
                             <img 
-                                src="${optimizedSrc}" 
+                                src="${src}" 
                                 alt="Jauneball image ${index + 1}" 
                                 loading="lazy"
                                 class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                                data-fullsize="${optimizedSrc}"
+                                data-fullsize="${src}"
                             >
                             <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                 <span class="text-white text-lg font-semibold bg-black/50 px-3 py-1 rounded-full">
@@ -497,7 +500,7 @@
                     // Add click event to open image in fullscreen
                     item.addEventListener('click', (e) => {
                         e.preventDefault();
-                        openImageViewer(optimizedSrc);
+                        openImageViewer(src);
                     });
                     
                     gallery.appendChild(item);
