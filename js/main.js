@@ -63,42 +63,73 @@ document.addEventListener('DOMContentLoaded', async function() {
     slideshow.style.height = '100%';
     slideshow.style.zIndex = '0';
     
-    // Image paths for the slideshow
-    const slideshowImages = [
-        'images/slideshow/optimized/10-4B8A2197-optimized.jpg',
-        'images/slideshow/optimized/14-4B8A1925 Kopie-optimized.jpg',
-        'images/slideshow/optimized/16-4B8A2218-optimized.jpg',
-        'images/slideshow/optimized/25-4B8A2273-optimized.jpg',
-        'images/slideshow/optimized/29-4B8A2298-optimized.jpg',
-        'images/slideshow/optimized/38-4B8A2335-optimized.jpg',
-        'images/slideshow/optimized/41-4B8A2355-optimized.jpg',
-        'images/slideshow/optimized/46-4B8A2388-optimized.jpg',
-        'images/slideshow/optimized/47-4B8A2394-optimized.jpg',
-        'images/slideshow/optimized/51-4B8A2406-optimized.jpg',
-        'images/slideshow/optimized/52-4B8A2410-optimized.jpg',
-        'images/slideshow/optimized/53-4B8A2413-optimized.jpg',
-        'images/slideshow/optimized/DSC00667 Kopie-optimized.jpg',
-        'images/slideshow/optimized/DSC00865 Kopie-optimized.jpg',
-        'images/slideshow/optimized/DSC00891 Kopie-optimized.jpg',
-        'images/slideshow/optimized/DSC00921 Kopie-optimized.jpg',
-        'images/slideshow/optimized/DSC00929 Kopie-optimized.jpg',
-        'images/slideshow/optimized/DSC01014 Kopie-optimized.jpg',
-        'images/slideshow/optimized/DSC01031 Kopie-optimized.jpg',
-        'images/slideshow/optimized/DSC01040-2 Kopie-optimized.jpg'
+    // Base image paths for the slideshow (without extension)
+    const slideshowImageBases = [
+        'images/slideshow/optimized/10-4B8A2197-optimized',
+        'images/slideshow/optimized/14-4B8A1925 Kopie-optimized',
+        'images/slideshow/optimized/16-4B8A2218-optimized',
+        'images/slideshow/optimized/25-4B8A2273-optimized',
+        'images/slideshow/optimized/29-4B8A2298-optimized',
+        'images/slideshow/optimized/38-4B8A2335-optimized',
+        'images/slideshow/optimized/41-4B8A2355-optimized',
+        'images/slideshow/optimized/46-4B8A2388-optimized',
+        'images/slideshow/optimized/47-4B8A2394-optimized',
+        'images/slideshow/optimized/51-4B8A2406-optimized',
+        'images/slideshow/optimized/52-4B8A2410-optimized',
+        'images/slideshow/optimized/53-4B8A2413-optimized',
+        'images/slideshow/optimized/DSC00667 Kopie-optimized',
+        'images/slideshow/optimized/DSC00865 Kopie-optimized',
+        'images/slideshow/optimized/DSC00891 Kopie-optimized',
+        'images/slideshow/optimized/DSC00921 Kopie-optimized',
+        'images/slideshow/optimized/DSC00929 Kopie-optimized',
+        'images/slideshow/optimized/DSC01014 Kopie-optimized',
+        'images/slideshow/optimized/DSC01031 Kopie-optimized',
+        'images/slideshow/optimized/DSC01040-2 Kopie-optimized'
     ];
 
-    // Function to get the appropriate image URL
-    const getImageUrl = async (index) => {
-        return slideshowImages[index];
-    };
+    // Initialize WebP support flag
+    let supportsWebPValue = false;
+    
+    // // Function to get the appropriate image URL with WebP support
+    // const getImageUrl = async (index) => {
+    //     const basePath = slideshowImageBases[index % slideshowImageBases.length];
+    //     // If WebP is supported, use .webp extension, otherwise use .jpg
+    //     const extension = supportsWebPValue ? '.webp' : '.jpg';
+    //     return `${basePath}${extension}`;
+    // };
 
-    // Initialize images array
-    let images = [...slideshowImages];
+    // Initialize images array with proper extensions based on WebP support
+    let images = [];
     let webPInitialized = false;
     
-    // Function to preload all images
+    // Initialize WebP support and image paths
+    async function initializeWebPSupport() {
+        if (webPInitialized) return;
+        
+        supportsWebPValue = await supportsWebP();
+        console.log(`WebP support: ${supportsWebPValue ? 'Enabled' : 'Not available'}`);
+        
+        // Initialize image paths with correct extensions and naming
+        images = slideshowImageBases.map(base => {
+            if (supportsWebPValue) {
+                // For WebP, remove the -optimized suffix
+                const webpBase = base.replace(/-optimized$/, '');
+                return `${webpBase}.webp`;
+            } else {
+                // For JPG, keep the -optimized suffix
+                return `${base}.jpg`;
+            }
+        });
+        
+        webPInitialized = true;
+    }
+    
+    // Function to preload all images with WebP support
     const preloadImages = async () => {
-        return Promise.all(slideshowImages.map(src => {
+        // Ensure WebP support is checked first
+        await initializeWebPSupport();
+        
+        return Promise.all(images.map(src => {
             return new Promise((resolve) => {
                 const img = new Image();
                 img.onload = () => {
@@ -114,47 +145,59 @@ document.addEventListener('DOMContentLoaded', async function() {
         }));
     };
     
-    // Start preloading all slideshow images
-    const preloadPromise = preloadImages();
+    // Initialize the slideshow timing variables first
+    const minDisplayTime = 6000; // 6 seconds in milliseconds
+    let loadStartTime;
     
-    // Initialize the slideshow (won't be visible yet)
-    initSlideshow();
-    
-    // When all images are loaded, wait until at least 5 seconds have passed before showing slideshow
-    const minDisplayTime = 6000; // 5 seconds in milliseconds
-    const loadStartTime = Date.now();
-    
-    preloadPromise.then(() => {
+    // Initialize WebP support and then start the slideshow
+    initializeWebPSupport().then(async () => {
+        // Start preloading all slideshow images after WebP support is checked
+        await preloadImages();
         console.log('All slideshow images loaded');
+        
+        // Initialize the slideshow (won't be visible yet)
+        await initSlideshow();
+        
+        // Set the start time after everything is loaded
+        loadStartTime = Date.now();
+        
         const elapsedTime = Date.now() - loadStartTime;
         const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
         
         console.log(`Waiting additional ${remainingTime}ms before showing slideshow`);
         
-        // Show slideshow after the remaining time or immediately if already past 5 seconds
+        // Show slideshow after the remaining time or immediately if already past min display time
         setTimeout(() => {
             console.log('Showing slideshow after minimum display time');
             showSlideshow();
         }, remainingTime);
     }).catch(error => {
-        console.error('Error preloading images:', error);
-        // Still respect the minimum display time even if there were errors
+        console.error('Error initializing slideshow:', error);
+        // If we get here, something went wrong with initialization
+        // Try to show the slideshow anyway after the minimum display time
+        loadStartTime = loadStartTime || Date.now();
         const elapsedTime = Date.now() - loadStartTime;
         const remainingTime = Math.max(0, minDisplayTime - elapsedTime);
         
         setTimeout(() => {
-            console.log('Showing slideshow after error and minimum display time');
+            console.log('Showing slideshow after error');
             showSlideshow();
         }, remainingTime);
     });
     
-    function initSlideshow() {
+    async function initSlideshow() {
         // Function to get the correct image path
         const getImagePath = (src) => {
+            if (!src) return '';
             // Remove any leading slashes and add ./ to ensure relative path
             const cleanPath = src.replace(/^\/+/, '');
             return `./${cleanPath}`;
         };
+        
+        // Initialize WebP support for the slideshow (already done in preloadImages)
+        if (!webPInitialized) {
+            await initializeWebPSupport();
+        }
         
         // Create two layers for crossfading
         const slideshowLayers = [
@@ -188,8 +231,8 @@ document.addEventListener('DOMContentLoaded', async function() {
             if (isTransitioning) return;
             isTransitioning = true;
             
-                // Get the image path directly from our slideshow images array
-            const imgPath = slideshowImages[index % slideshowImages.length];
+                // Get the image path from our images array which is already initialized with correct extensions
+            const imgPath = images[index % images.length];
             
             console.log('Setting image:', imgPath);
             
@@ -198,7 +241,9 @@ document.addEventListener('DOMContentLoaded', async function() {
             const newImg = new Image();
             
             newImg.onload = () => {
-                slideshowLayers[inactiveLayer].style.backgroundImage = `url('${imgPath}')`;
+                // Use the correct path for the background image
+                const finalPath = getImagePath(imgPath);
+                slideshowLayers[inactiveLayer].style.backgroundImage = `url('${finalPath}')`;
                 
                 // Crossfade
                 slideshowLayers[activeLayer].style.opacity = '0';
@@ -222,33 +267,15 @@ document.addEventListener('DOMContentLoaded', async function() {
             newImg.src = imgPath;
         };
         
-        // Set first image (load immediately)
-        (async () => {
-            const firstImgPath = slideshowImages[0];
-            const firstImg = new Image();
-            
-            firstImg.onload = () => {
-                slideshowLayers[0].style.backgroundImage = `url('${firstImgPath}')`;
-                // Start slideshow after first image is loaded
-                startSlideshow();
-                // Start preloading the next image
-                preloadNextImage();
-            };
-            firstImg.src = firstImgPath;
-        })();
-        
-        function startSlideshow() {
-            // Clear any existing interval
-            if (slideshowInterval) {
-                clearInterval(slideshowInterval);
-            }
-            
-            // Change image every 5 seconds
-            slideshowInterval = setInterval(() => {
-                currentImageIndex = (currentImageIndex + 1) % images.length;
-                setImage(currentImageIndex);
-            }, 5000);
+        if (slideshowInterval) {
+            clearInterval(slideshowInterval);
         }
+        
+        // Change image every 5 seconds
+        slideshowInterval = setInterval(() => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            setImage(currentImageIndex);
+        }, 5000);
     }
     
     // Overlay functionality
