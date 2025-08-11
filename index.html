@@ -76,8 +76,11 @@
     <!-- History Overlay -->
     <div id="historyOverlay" class="fixed inset-0 bg-black/90 z-50 hidden overflow-y-auto">
         <div class="container mx-auto px-4 py-16">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-4xl font-bold">Geschichte</h2>
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center">
+                    <img src="images/jauneball_logo.png" alt="Jauneball Logo" width="120" height="120" class="h-12 sm:h-16 w-auto mr-4">
+                    <h2 class="text-4xl font-bold">Geschichte</h2>
+                </div>
                 <button id="closeHistory" class="text-4xl hover:text-gray-400">&times;</button>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
@@ -107,27 +110,48 @@
     <!-- Rules Overlay -->
     <div id="rulesOverlay" class="fixed inset-0 bg-black/90 z-50 hidden overflow-y-auto">
         <div class="container mx-auto px-4 py-16">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-4xl font-bold">Regelwerk</h2>
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center">
+                    <img src="images/jauneball_logo.png" alt="Jauneball Logo" width="120" height="120" class="h-12 sm:h-16 w-auto mr-4">
+                    <h2 class="text-4xl font-bold">Regelwerk</h2>
+                </div>
                 <button id="closeRules" class="text-4xl hover:text-gray-400">&times;</button>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="md:col-span-2">
                     <ul class="space-y-4 text-lg">
                         <li class="font-extrabold text-3xl pt-6 pb-2">Spiel</li>
-                        <li>Beim Jauneball wird 1 gegen 1 Handball auf Unihockeytore gespielt. Somit ist WerferIn und TorhüterIn zugleich.</li>
+                        <li>Beim Jauneball wird 1 gegen 1 Handball auf Unihockeytore gespielt. Somit ist man WerferIn und TorhüterIn zugleich.</li>
                         <li>Man darf nur aus der eigenen Hälfte werfen. Mit einem Sprungwurf ist es erlaubt die Mittellinie zu überspringen und abzuschliessen. Man darf so oft antäuschen wie man will, hat aber nur 10 Sekunden Zeit um abzuschliessen, sonst gibt es einen Ballbesitzwechsel.</li>
                         <li>Bei einem Fehlwurf spielt der/die weiter die den Bäll erwischt. Bei einem Tor hat die andere Person Anspiel.</li>
                         <li>Gespielt wird mit einem tenissgrossen Softball.</li>
                         <li>Die Spielzeit beträgt 2 x 4 Minuten, mit einem Seitenwechsel von etwa 30 Sekunden.</li>
                         <li>Der Spielstand wird von den SpielerInnen selbst gezählt. Wenn der Stand vergessen wird, wird das Spiel mit 0:0 gewertet.</li>
+                        <li>Der Wurf muss vor der Mittellinie erfolgen.</li>
+                        <li>Der Wurf kann direkt oder bodenauf ausgeführt werden.</li>
+                        <li>Ein Wurf via Decke oder Wand ist nicht erlaubt.</li>
+                        <li>Man hat 10 Sekunden Zeit, um zu werfen. Täuschen und Prellen sind unbegrenzt erlaubt.</li>
+                        <li>Wird der Ball abgewehrt, spielt derjenige weiter, der ihn zuerst erreicht.</li>
+                        <li>Der Torwart muss im Tor aufrecht stehen und darf nicht knien. Beide Knie müssen in der Luft sein, wenn der angreifende Spieler wirft.</li>
+                        <li>Sobald der Ball die Hand des Werfenden verlassen hat, ist "Bodenspiel" erlaubt.</li>
+                        <li>In der Verteidigungsposition darf der Torwart sich überall auf der eigenen Spielhälfte bewegen.</li>
+                        <li>Um Zeitspiel zu verhindern, ist es nicht erlaubt, den Ball mehr als zweimal an die Wand hinter dem Tor zu werfen und ohne gegnerischen Kontakt wieder zu fangen.</li>
+                        <li>Der Penalty muss von der Mittellinie aus dem Stand geworfen werden. Der Standfuss darf dabei nicht bewegt und die Linie nicht übertreten werden. Man hat 5 Sek. Zeit, um abzuschliessen und darf unbegrenzt antäuschen.</li>
+                        <li>Wenn es offensichtlich ist, dass ein Spieler absichtlich mehrmals daneben wirft, wird ihm direkt ein Tor abgezogen.</li>
+                        <li>Ein Tor zählt wenn der Ball die Torlinie mit vollem Umfang überquert hat, bevor die Schlusssirene aufhört zu läuten.</li>
                         <li class="font-extrabold text-3xl pt-12 pb-2">Anspiel & Seitenwahl</li>
                         <li>Die Entscheidung über Anspiel und Seitenwahl erfolgt durch einen Chipwurf. Der Gewinner der Chipwahl entscheidet, ob er das Anspiel übernimmt, während der Verlierer die Seitenwahl trifft.</li>
                         <li class="font-extrabold text-3xl pt-12 pb-2">Penaltyschiessen</li>
-                        <li>Beim Penaltyschiessen wird von der Mittellinie aus dem Stand geworfen.Man hat je 4 Würfe. Bei Gleichstand nach je 4 Würfen, wird je 1 Wurf geworfen bis eine Entscheidung fällt.</li>
+                        <li>Beim Penaltyschiessen wird von der Mittellinie aus dem Stand geworfen. Man hat je 4 Würfe.</li> 
+                        <li>Bei Gleichstand nach je 4 Würfen, wird je 1 Wurf geworfen bis eine Entscheidung fällt.</li>
                         <li class="font-extrabold text-3xl pt-12 pb-2">Spielort</li>
-                        <li>Das Spiel kann sowohl drinnen als auch draussen auf verschiedenen Untergründen wie Hartplatz, Rasen, Sand oder Beton gespielt werden. Am besten eignet sich eine Turnhalle, in der die Unihockeytore direkt an der Wand stehen, um das Spiel schneller und spannender zu gestalten.</li>
-                        <li>Spielvarianten & ModiVariationen wie Fussball, Unihockey oder andere 1-gegen-1-Spiele mit grösseren Bällen sind leicht umsetzbar.Trainingsspiele, Turniere mit Gruppenspiele & KO-Phase, Nur KO-Phase oder Ligasystem, alles ist möglich.</li>
+                        <li>Jaunball wird offiziell in einer Turnhalle gespielt. Die Unihockeytore sthen direkt an der Wand um das Spiel spannender zu gestalten.</li>
+                        <li class="font-extrabold text-3xl pt-12 pb-2">Dresscode</li>
+                        <li>Hosen: Kurze oder lange Trainerhosen. Der Durchmesser der Hosenbeine darf 30-32cm (von Naht zu Naht) nicht überschreiten.</li>
+                        <li>Shirt: Kurzes Sportshirt oder offiziell Jauneball-Shirt. Keine Hoodies oder breite Shirts.</li>
+                        <li>Schuhe: Saubere Turnschuhe, Socken oder Barfuss</li>
+                        <li class="font-extrabold text-3xl pt-12 pb-2">Spielvarianten & Modi</li>
+                        <li>Das Spiel kann sowohl drinnen als auch draussen auf verschiedenen Untergründen wie Hartplatz, Rasen, Sand oder Beton gespielt werden. Spielvarianten wie Fussball, Unihockey oder andere 1-gegen-1-Spiele mit grösseren Bällen sind leicht umsetzbar. Trainingsspiele, Turniere mit Gruppenspiele & KO-Phase, Nur KO-Phase oder Ligasystem, alles ist möglich - enstpricht aber nicht mehr dem Originalspiel.</li>
                     </ul>
                 </div>
                 <div class="space-y-4">
@@ -151,10 +175,13 @@
     <!-- Get Involved Overlay -->
     <div id="getInvolvedOverlay" class="fixed inset-0 bg-black/90 z-50 hidden overflow-y-auto">
         <div class="container mx-auto px-4 py-16">
-            <!-- Close Button -->
+            <!-- Header with Logo and Close -->
             <div class="flex flex-col items-center mb-8">
-                <div class="w-full flex justify-between items-center">
-                    <h2 class="text-3xl md:text-4xl font-bold mx-auto px-6">Willst du dein eigenes Turnier durchführen?</h2>
+                <div class="w-full flex justify-between items-center mb-4">
+                    <div class="flex items-center">
+                        <img src="images/jauneball_logo.png" alt="Jauneball Logo" width="120" height="120" class="h-12 sm:h-16 w-auto mr-4">
+                        <h2 class="text-3xl md:text-4xl font-bold mx-auto">Willst du dein eigenes Turnier durchführen?</h2>
+                    </div>
                     <button id="closeGetInvolved" class="text-4xl hover:text-yellow-400">&times;</button>
                 </div>
             </div>
@@ -166,7 +193,7 @@
                 <!-- Resources Grid -->
                 <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
                     <!-- Turnier Excel Tabelle -->
-                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
+                    <div class="rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
                         <div>
                             <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
                                 <i class="fas fa-table text-amber-400 text-xl"></i>
@@ -182,7 +209,7 @@
                     </div>
 
                     <!-- Offizieller Spielball -->
-                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
+                    <div class="rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
                         <div>
                             <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
                                 <i class="fas fa-futbol text-amber-400 text-xl"></i>
@@ -198,7 +225,7 @@
                     </div>
 
                     <!-- Anspielmünze / Wählmarke -->
-                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
+                    <div class="rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
                         <div>
                             <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
                                 <i class="fas fa-coins text-amber-400 text-xl"></i>
@@ -214,7 +241,7 @@
                     </div>
 
                     <!-- Auslosungskugel -->
-                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
+                    <div class="rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
                         <div>
                             <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
                                 <i class="fas fa-basketball-ball text-amber-400 text-xl"></i>
@@ -229,7 +256,7 @@
                         </div>
                     </div>
                     <!-- Shirts gestalten -->
-                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
+                    <div class="rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
                         <div>
                             <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
                                 <i class="fas fa-shirt text-amber-400 text-xl"></i>
@@ -244,7 +271,7 @@
                         </div>
                     </div>
                     <!-- Spielerkarte erstellen -->
-                    <div class="bg-gray-800 rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
+                    <div class="rounded-xl shadow-lg p-6 hover:bg-gray-700 transition-colors flex flex-col h-full">
                         <div>
                             <div class="w-12 h-12 bg-amber-100/10 rounded-full flex items-center justify-center mb-4">
                                 <i class="fas fa-paint-brush text-amber-400 text-xl"></i>
@@ -260,7 +287,7 @@
                     </div>
                 </div>
                 <!-- Contact Section -->
-                <div class="bg-gray-800 rounded-xl p-8 text-center">
+                <div class="rounded-xl p-8 text-center">
                     <h3 class="text-2xl font-bold mb-4">Hast du Fragen?</h3>
                     <p class="text-gray-300 mb-6">Kontaktiere uns für weitere Informationen oder Unterstützung bei der Organisation deines Turniers.</p>
                     <a href="mailto:info@jauneball.ch" class="inline-flex items-center px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-full text-lg font-medium transition-colors">
@@ -276,28 +303,18 @@
     <!-- Impressions Overlay -->
     <div id="impressionsOverlay" class="fixed inset-0 bg-black/90 z-50 hidden overflow-y-auto">
         <div class="container mx-auto px-4 py-16">
-            <!-- Close Button -->
-            <div class="flex justify-end mb-8">
-                <button id="closeImpressions" class="text-4xl text-white hover:text-yellow-400 transition-colors">
-                    &times;
-                </button>
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center">
+                    <img src="images/jauneball_logo.png" alt="Jauneball Logo" width="120" height="120" class="h-12 sm:h-16 w-auto mr-4">
+                    <h2 class="text-4xl font-bold">Impressionen</h2>
+                </div>
+                <button id="closeImpressions" class="text-4xl hover:text-gray-400">&times;</button>
             </div>
             
             <!-- Video Section -->
             <div class="mb-12">
                 <h2 class="text-3xl font-bold mb-6 text-center">Videos</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Video 1 -->
-                    <div class="aspect-w-16 aspect-h-9 bg-black rounded-lg overflow-hidden">
-                        <iframe 
-                            src="https://player.vimeo.com/video/1091255653" 
-                            frameborder="0" 
-                            allow="autoplay; fullscreen; picture-in-picture" 
-                            allowfullscreen
-                            class="w-full h-full min-h-[250px]"
-                        ></iframe>
-                    </div>
-                    <!-- Video 2 -->
                     <div class="aspect-w-16 aspect-h-9 bg-black rounded-lg overflow-hidden">
                         <iframe 
                             src="https://player.vimeo.com/video/1103176295" 
@@ -307,10 +324,18 @@
                             class="w-full h-full min-h-[250px]"
                         ></iframe>
                     </div>
-                    <!-- Video 3 -->
                     <div class="aspect-w-16 aspect-h-9 bg-black rounded-lg overflow-hidden">
                         <iframe 
                             src="https://player.vimeo.com/video/1103174893" 
+                            frameborder="0" 
+                            allow="autoplay; fullscreen; picture-in-picture" 
+                            allowfullscreen
+                            class="w-full h-full min-h-[250px]"
+                        ></iframe>
+                    </div>
+                    <div class="aspect-w-16 aspect-h-9 bg-black rounded-lg overflow-hidden">
+                        <iframe 
+                            src="https://player.vimeo.com/video/1091255653" 
                             frameborder="0" 
                             allow="autoplay; fullscreen; picture-in-picture" 
                             allowfullscreen
