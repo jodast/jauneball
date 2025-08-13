@@ -76,12 +76,13 @@
     <!-- History Overlay -->
     <div id="historyOverlay" class="fixed inset-0 bg-black/90 z-50 hidden overflow-y-auto">
         <div class="container mx-auto px-4 py-16">
-            <div class="flex items-center justify-between mb-8">
-                <div class="flex items-center">
-                    <img src="images/jauneball_logo.png" alt="Jauneball Logo" width="120" height="120" class="h-12 sm:h-16 w-auto mr-4">
-                    <h2 class="text-4xl font-bold">Geschichte</h2>
+            <!-- Header with Logo and Close -->
+            <div class="flex flex-col items-center mb-8">
+                <div class="w-full flex justify-between items-center mb-4 relative">
+                    <a href="/" class="flex-shrink-0"><img src="images/jauneball_logo.png" alt="Jauneball Logo" width="120" height="120" class="h-16 sm:h-20 md:h-24 w-auto"></a>
+                    <h2 class="text-4xl md:text-5xl font-bold text-center w-full max-w-2xl">Geschichte</h2>
+                    <button id="closeHistory" class="text-4xl md:text-6xl hover:text-yellow-400 flex-shrink-0">&times;</button>
                 </div>
-                <button id="closeHistory" class="text-4xl hover:text-gray-400">&times;</button>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="md:col-span-2">
@@ -110,12 +111,13 @@
     <!-- Rules Overlay -->
     <div id="rulesOverlay" class="fixed inset-0 bg-black/90 z-50 hidden overflow-y-auto">
         <div class="container mx-auto px-4 py-16">
-            <div class="flex items-center justify-between mb-8">
-                <div class="flex items-center">
-                    <img src="images/jauneball_logo.png" alt="Jauneball Logo" width="120" height="120" class="h-12 sm:h-16 w-auto mr-4">
-                    <h2 class="text-4xl font-bold">Regelwerk</h2>
+            <!-- Header with Logo and Close -->
+            <div class="flex flex-col items-center mb-8">
+                <div class="w-full flex justify-between items-center mb-4 relative">
+                    <a href="/" class="flex-shrink-0"><img src="images/jauneball_logo.png" alt="Jauneball Logo" width="120" height="120" class="h-16 sm:h-20 md:h-24 w-auto"></a>
+                    <h2 class="text-4xl md:text-5xl font-bold text-center w-full max-w-2xl">Regelwerk</h2>
+                    <button id="closeRules" class="text-4xl md:text-6xl hover:text-yellow-400 flex-shrink-0">&times;</button>
                 </div>
-                <button id="closeRules" class="text-4xl hover:text-gray-400">&times;</button>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="md:col-span-2">
@@ -127,17 +129,21 @@
                         <li>Gespielt wird mit einem tenissgrossen Softball.</li>
                         <li>Die Spielzeit beträgt 2 x 4 Minuten, mit einem Seitenwechsel von etwa 30 Sekunden.</li>
                         <li>Der Spielstand wird von den SpielerInnen selbst gezählt. Wenn der Stand vergessen wird, wird das Spiel mit 0:0 gewertet.</li>
+                        <li>Um Zeitspiel zu verhindern, ist es nicht erlaubt, den Ball mehr als zweimal an die Wand hinter dem Tor zu werfen und ohne gegnerischen Kontakt wieder zu fangen.</li>
+                        <li class="font-extrabold text-3xl pt-12 pb-2">Wurfregeln</li>
                         <li>Der Wurf muss vor der Mittellinie erfolgen.</li>
                         <li>Der Wurf kann direkt oder bodenauf ausgeführt werden.</li>
                         <li>Ein Wurf via Decke oder Wand ist nicht erlaubt.</li>
                         <li>Man hat 10 Sekunden Zeit, um zu werfen. Täuschen und Prellen sind unbegrenzt erlaubt.</li>
                         <li>Wird der Ball abgewehrt, spielt derjenige weiter, der ihn zuerst erreicht.</li>
+                        <li class="font-extrabold text-3xl pt-12 pb-2">Regeln für den Torwart</li>
                         <li>Der Torwart muss im Tor aufrecht stehen und darf nicht knien. Beide Knie müssen in der Luft sein, wenn der angreifende Spieler wirft.</li>
                         <li>Sobald der Ball die Hand des Werfenden verlassen hat, ist "Bodenspiel" erlaubt.</li>
-                        <li>In der Verteidigungsposition darf der Torwart sich überall auf der eigenen Spielhälfte bewegen.</li>
-                        <li>Um Zeitspiel zu verhindern, ist es nicht erlaubt, den Ball mehr als zweimal an die Wand hinter dem Tor zu werfen und ohne gegnerischen Kontakt wieder zu fangen.</li>
+                        <li>Der Torwart darf sich überall auf der eigenen Spielhälfte bewegen.</li>
+                        <li class="font-extrabold text-3xl pt-12 pb-2">Penaltyregeln</li>
                         <li>Der Penalty muss von der Mittellinie aus dem Stand geworfen werden. Der Standfuss darf dabei nicht bewegt und die Linie nicht übertreten werden. Man hat 5 Sek. Zeit, um abzuschliessen und darf unbegrenzt antäuschen.</li>
                         <li>Wenn es offensichtlich ist, dass ein Spieler absichtlich mehrmals daneben wirft, wird ihm direkt ein Tor abgezogen.</li>
+                        <li class="font-extrabold text-3xl pt-12 pb-2">Torregeln</li>
                         <li>Ein Tor zählt wenn der Ball die Torlinie mit vollem Umfang überquert hat, bevor die Schlusssirene aufhört zu läuten.</li>
                         <li class="font-extrabold text-3xl pt-12 pb-2">Anspiel & Seitenwahl</li>
                         <li>Die Entscheidung über Anspiel und Seitenwahl erfolgt durch einen Chipwurf. Der Gewinner der Chipwahl entscheidet, ob er das Anspiel übernimmt, während der Verlierer die Seitenwahl trifft.</li>
@@ -177,19 +183,15 @@
         <div class="container mx-auto px-4 py-16">
             <!-- Header with Logo and Close -->
             <div class="flex flex-col items-center mb-8">
-                <div class="w-full flex justify-between items-center mb-4">
-                    <div class="flex items-center">
-                        <img src="images/jauneball_logo.png" alt="Jauneball Logo" width="120" height="120" class="h-12 sm:h-16 w-auto mr-4">
-                        <h2 class="text-3xl md:text-4xl font-bold mx-auto">Willst du dein eigenes Turnier durchführen?</h2>
-                    </div>
-                    <button id="closeGetInvolved" class="text-4xl hover:text-yellow-400">&times;</button>
+                <div class="w-full flex justify-between items-center mb-4 relative">
+                    <a href="/" class="flex-shrink-0"><img src="images/jauneball_logo.png" alt="Jauneball Logo" width="120" height="120" class="h-16 sm:h-20 md:h-24 w-auto"></a>
+                    <h2 class="text-2xl md:text-4xl font-bold text-center w-full max-w-2xl">Willst du dein eigenes Turnier durchführen?</h2>
+                    <button id="closeGetInvolved" class="text-4xl md:text-6xl hover:text-yellow-400 flex-shrink-0">&times;</button>
                 </div>
             </div>
             
             <!-- Content -->
             <div class="max-w-4xl mx-auto">
-                <p class="text-xl mb-8 text-center">Hier verschiedene Hilfsmittel die dir dabei helfen können</p>
-                
                 <!-- Resources Grid -->
                 <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
                     <!-- Turnier Excel Tabelle -->
@@ -303,17 +305,17 @@
     <!-- Impressions Overlay -->
     <div id="impressionsOverlay" class="fixed inset-0 bg-black/90 z-50 hidden overflow-y-auto">
         <div class="container mx-auto px-4 py-16">
-            <div class="flex items-center justify-between mb-8">
-                <div class="flex items-center">
-                    <img src="images/jauneball_logo.png" alt="Jauneball Logo" width="120" height="120" class="h-12 sm:h-16 w-auto mr-4">
-                    <h2 class="text-4xl font-bold">Impressionen</h2>
+            <div class="flex flex-col items-center mb-8">
+                <div class="w-full flex justify-between items-start mb-4 relative">
+                    <a href="/" class="flex-shrink-0"><img src="images/jauneball_logo.png" alt="Jauneball Logo" width="120" height="120" class="h-16 sm:h-20 md:h-24 w-auto"></a>
+                    <h2 class="text-4xl md:text-5xl font-bold text-center w-full max-w-2xl">Impressionen</h2>
+                    <button id="closeImpressions" class="text-4xl md:text-6xl hover:text-yellow-400 flex-shrink-0">&times;</button>
                 </div>
-                <button id="closeImpressions" class="text-4xl hover:text-gray-400">&times;</button>
             </div>
             
             <!-- Video Section -->
             <div class="mb-12">
-                <h2 class="text-3xl font-bold mb-6 text-center">Videos</h2>
+                <!-- <h2 class="text-3xl font-bold mb-6 text-center">Videos</h2> -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="aspect-w-16 aspect-h-9 bg-black rounded-lg overflow-hidden">
                         <iframe 
@@ -443,7 +445,7 @@
             const imageViewerImg = imageViewer.querySelector('img');
             const closeViewerBtn = document.getElementById('closeViewer');
             
-            // Image viewer functions
+            // // Image viewer functions
             function openImageViewer(src) {
                 imageViewerImg.src = src;
                 imageViewer.classList.add('active');
@@ -506,39 +508,21 @@
                 'images/impressions/10-4B8A2197.jpg',
                 'images/impressions/11-4B8A1917 Kopie.jpg',
                 'images/impressions/14-4B8A1925 Kopie.jpg',
-                'images/impressions/16-4B8A2218.jpg',
                 'images/impressions/17-4B8A2233.jpg',
-                'images/impressions/19-4B8A2249.jpg',
-                'images/impressions/21-4B8A1948 Kopie.jpg',
-                'images/impressions/22-4B8A2253.jpg',
                 'images/impressions/25-4B8A2273.jpg',
                 'images/impressions/28-4B8A2286.jpg',
                 'images/impressions/29-4B8A2298.jpg',
-                'images/impressions/37-4B8A2319.jpg',
-                'images/impressions/38-4B8A2335.jpg',
                 'images/impressions/41-4B8A2355.jpg',
-                'images/impressions/43-4B8A2359.jpg',
-                'images/impressions/46-4B8A2388.jpg',
-                'images/impressions/47-4B8A2394.jpg',
                 'images/impressions/48-4B8A2398.jpg',
                 'images/impressions/49-4B8A2402.jpg',
-                'images/impressions/50-4B8A2405.jpg',
-                'images/impressions/51-4B8A2406.jpg',
                 'images/impressions/52-4B8A2410.jpg',
-                'images/impressions/53-4B8A2413.jpg',
-                'images/impressions/6-4B8A2185.jpg',
-                'images/impressions/DSC00667 Kopie.jpg',
                 'images/impressions/DSC00765 Kopie.jpg',
                 'images/impressions/DSC00769 Kopie.jpg',
-                'images/impressions/DSC00774 Kopie.jpg',
                 'images/impressions/DSC00775 Kopie.jpg',
                 'images/impressions/DSC00812 Kopie.jpg',
-                'images/impressions/DSC00865 Kopie.jpg',
                 'images/impressions/DSC00891 Kopie.jpg',
                 'images/impressions/DSC00921 Kopie.jpg',
                 'images/impressions/DSC00929 Kopie.jpg',
-                'images/impressions/DSC00974 Kopie.jpg',
-                'images/impressions/DSC01014 Kopie.jpg',
                 'images/impressions/DSC01031 Kopie.jpg',
                 'images/impressions/DSC01040-2 Kopie.jpg'
             ];
