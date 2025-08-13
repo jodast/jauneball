@@ -5,7 +5,7 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <!-- Main page -->
     <url>
-        <loc>https://jauneball.ch/</loc>
+        <loc>https://jauneball.com/</loc>
         <lastmod>2025-07-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -13,25 +13,25 @@
     
     <!-- Overlay sections with hash fragments -->
     <url>
-        <loc>https://jauneball.ch/#geschichte</loc>
+        <loc>https://jauneball.com/#geschichte</loc>
         <lastmod>2025-07-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://jauneball.ch/#regelwerk</loc>
+        <loc>https://jauneball.com/#regelwerk</loc>
         <lastmod>2025-07-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://jauneball.ch/#impressionen</loc>
+        <loc>https://jauneball.com/#impressionen</loc>
         <lastmod>2025-07-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://jauneball.ch/#turnier</loc>
+        <loc>https://jauneball.com/#turnier</loc>
         <lastmod>2025-07-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
