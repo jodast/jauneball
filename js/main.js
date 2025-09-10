@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     };
     
     // Initialize the slideshow timing variables first
-    const minDisplayTime = 6000; // 6 seconds in milliseconds
+    const minDisplayTime = 10000; // 10 seconds in milliseconds
     let loadStartTime;
     
     // Function to handle screen resize and orientation changes
