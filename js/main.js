@@ -37,7 +37,7 @@ function loadInitialImage() {
         const initialLoad = document.getElementById('initial-load');
         if (!initialLoad) return resolve();
         
-        fetch(isMobile() ? 'images/1-mobile.txt' : 'images/1.txt')
+        fetch(isMobile() ? 'images/1-mobile.txt' : 'images/11.txt')
             .then(response => response.text())
             .then(base64Data => {
                 initialLoad.style.backgroundImage = `url('data:image/jpeg;base64, ${base64Data}')`;
@@ -83,6 +83,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         '10-4B8A2197-optimized',
         '14-4B8A1925 Kopie-optimized',
         '16-4B8A2218-optimized',
+        '63-4B8A3170 Kopie-optimized',
+        '58-4B8A3162 Kopie-optimized',
+        '45-4B8A3134 Kopie-optimized',
+        '38-4B8A3118 Kopie-optimized',
+        '28-4B8A3096 Kopie-optimized',
         '25-4B8A2273-optimized',
         '29-4B8A2298-optimized',
         '38-4B8A2335-optimized',
@@ -92,6 +97,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         '51-4B8A2406-optimized',
         '52-4B8A2410-optimized',
         '53-4B8A2413-optimized',
+        '1-4-4B8A3007 Kopie-optimized',
         'DSC00667 Kopie-optimized',
         'DSC00865 Kopie-optimized',
         'DSC00891 Kopie-optimized',

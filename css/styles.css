@@ -31,7 +31,7 @@ nav .container {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(13, 14, 15, 0.7);
+    background-color: rgba(13, 14, 15, 0.582);
     border: 1px solid rgba(255, 255, 255, 0.2);
     min-width: 140px;
     text-align: center;
