@@ -55,12 +55,15 @@
             <nav class="bg-gradient-to-t from-black/0 to-transparent pt-2 pb-16 relative z-30">
                 <div class="container mx-auto px-4">
                     <div class="flex flex-wrap justify-center gap-3 md:gap-6">
-                        <a href="#" id="historyBtn" class="nav-btn hover:bg-yellow-500">
+                        <button id="showFeaturesBtn" class="nav-btn hover:bg-yellow-500 cursor-pointer">
+                            <i class="fas fa-basketball-ball mr-2"></i> Das macht Jauneball aus
+                        </button>
+                        <button id="historyBtn" class="nav-btn hover:bg-yellow-500">
                             <i class="fas fa-history mr-2"></i> Geschichte
-                        </a>
-                        <a href="#" id="rulesBtn" class="nav-btn hover:bg-yellow-500">
+                        </button>
+                        <button id="rulesBtn" class="nav-btn hover:bg-yellow-500">
                             <i class="fas fa-book mr-2"></i> Regelwerk
-                        </a>
+                        </button>
                         <button id="showImpressionsBtn" class="nav-btn hover:bg-yellow-500 cursor-pointer">
                             <i class="fas fa-images mr-2"></i> Impressionen
                         </button>
@@ -70,6 +73,45 @@
                     </div>
                 </div>
             </nav>
+        </div>
+    </div>
+
+    <!-- Features Overlay -->
+    <div id="featuresOverlay" class="fixed inset-0 bg-black/90 z-50 hidden overflow-y-auto">
+        <div class="container mx-auto px-4 py-16">
+            <!-- Header with Logo and Close -->
+            <div class="flex flex-col items-center mb-8">
+                <div class="w-full flex justify-between items-center mb-4 relative">
+                    <a href="/" class="flex-shrink-0"><img src="images/jauneball_logo.png" alt="Jauneball Logo" width="120" height="120" class="h-16 sm:h-20 md:h-24 w-auto"></a>
+                    <h2 class="text-4xl md:text-5xl font-bold text-center w-full max-w-2xl">Das macht Jauneball aus</h2>
+                    <button id="closeFeatures" class="text-4xl md:text-6xl hover:text-yellow-400 flex-shrink-0">&times;</button>
+                </div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="md:col-span-2">
+                    <ul class="space-y-4 text-lg">
+                        <li class="font-extrabold text-3xl pt-6 pb-2">Angreifer und Verteidiger zugleich</li>
+                        <li>Es gibt nur sehr wenige Ballsportarten wo man Torwart und Feldspieler gleichzeitig ist. Man muss strategisch und technisch auf hohem Level sein um gewinnen zu können.</li>
+                        <li class="font-extrabold text-3xl pt-12 pb-2">Achterbahn der Gefühle & Schnelles Spiel</li>
+                        <li>Das Spiel ist extrem  schnell. Innerhalb von Sekunden muss man zwischen Angriff und Verteidigung wechseln. Vom erfolgreichen Torschuss und fantastischer Parade bis zu schwachem Wurf und misslungener Abwehraktion vergehen meist nur Sekunden.</li>
+                        <li class="font-extrabold text-3xl pt-12 pb-2">Reaktion vs. Antizipieren</li>
+                        <li>Dadurch dass die Wurfdistanz sehr kurz ist, ist es fast nicht möglich zu ¨reagieren¨. Eine gute Antizipation ist notwendig um regelmässig die Bälle abzuwehren.</li>
+                        <li class="font-extrabold text-3xl pt-12 pb-2">Fiktive Charaktere / Memberkarte</li>
+                        <li>Die fiktiven Charaktere sind eine lustige und motivierende Art das Spiel auf ein anderes Level zu bringen. Wie die meisten Kinder ihre Idole nachspielen oder die Gamer ihre Fantasienamen ausleben, ist beim Jauneball die Memberkarte ein fester Bestandteil für eine humorvolle Spielzeit.</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <div class="h-48 md:h-64 bg-gray-800 rounded-lg overflow-hidden">
+                        <img src="images/features/1.jpg" alt="Jauneball Spieler in Aktion" class="w-full h-full object-cover">
+                    </div>
+                    <div class="h-48 md:h-64 bg-gray-800 rounded-lg overflow-hidden">
+                        <img src="images/features/2.jpg" alt="Jauneball Turnier" class="w-full h-full object-cover">
+                    </div>
+                    <div class="h-48 md:h-64 bg-gray-800 rounded-lg overflow-hidden">
+                        <img src="images/features/3.jpg" alt="Jauneball Turnier" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

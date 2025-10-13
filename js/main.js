@@ -342,27 +342,31 @@ document.addEventListener('DOMContentLoaded', async function() {
     const rulesBtn = document.getElementById('rulesBtn');
     const showGetInvolvedBtn = document.getElementById('showGetInvolvedBtn');
     const showImpressionsBtn = document.getElementById('showImpressionsBtn');
+    const showFeaturesBtn = document.getElementById('showFeaturesBtn');
     const historyOverlay = document.getElementById('historyOverlay');
     const rulesOverlay = document.getElementById('rulesOverlay');
     const getInvolvedOverlay = document.getElementById('getInvolvedOverlay');
     const impressionsOverlay = document.getElementById('impressionsOverlay');
+    const featuresOverlay = document.getElementById('featuresOverlay');
     const closeHistory = document.getElementById('closeHistory');
     const closeRules = document.getElementById('closeRules');
     const closeGetInvolved = document.getElementById('closeGetInvolved');
     const closeImpressions = document.getElementById('closeImpressions');
+    const closeFeatures = document.getElementById('closeFeatures');
     
     // Map of overlay IDs to their corresponding hash
     const overlayMap = {
         'historyOverlay': 'geschichte',
         'rulesOverlay': 'regelwerk',
         'impressionsOverlay': 'impressionen',
-        'getInvolvedOverlay': 'turnier'
+        'getInvolvedOverlay': 'turnier',
+        'featuresOverlay': 'ueber-uns'
     };
     
     // Function to update URL and show overlay
     function showOverlay(overlay, hash) {
         // Hide all overlays first
-        [historyOverlay, rulesOverlay, getInvolvedOverlay, impressionsOverlay].forEach(ov => {
+        [historyOverlay, rulesOverlay, getInvolvedOverlay, impressionsOverlay, featuresOverlay].forEach(ov => {
             if (ov) ov.classList.add('hidden');
         });
         
@@ -380,7 +384,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // Function to close all overlays and update URL
     function closeAllOverlays() {
-        [historyOverlay, rulesOverlay, getInvolvedOverlay, impressionsOverlay].forEach(overlay => {
+        [historyOverlay, rulesOverlay, getInvolvedOverlay, impressionsOverlay, featuresOverlay].forEach(overlay => {
             if (overlay) overlay.classList.add('hidden');
         });
         document.body.style.overflow = 'auto';
@@ -451,6 +455,14 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
     }
     
+    // Show features overlay
+    if (showFeaturesBtn && featuresOverlay) {
+        showFeaturesBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showOverlay(featuresOverlay, 'ueber-uns');
+        });
+    }
+    
     // Close history overlay
     if (closeHistory) {
         closeHistory.addEventListener('click', closeAllOverlays);
@@ -470,9 +482,14 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (closeGetInvolved) {
         closeGetInvolved.addEventListener('click', closeAllOverlays);
     }
+
+    // Close features overlay
+    if (closeFeatures) {
+        closeFeatures.addEventListener('click', closeAllOverlays);
+    }
     
     // Close overlays when clicking outside content
-    [historyOverlay, rulesOverlay, getInvolvedOverlay, impressionsOverlay].forEach(overlay => {
+    [historyOverlay, rulesOverlay, getInvolvedOverlay, impressionsOverlay, featuresOverlay].forEach(overlay => {
         if (overlay) {
             overlay.addEventListener('click', (e) => {
                 if (e.target === overlay) {
